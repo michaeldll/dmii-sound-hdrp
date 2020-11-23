@@ -1,9 +1,9 @@
+#pragma warning disable 0649
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
-
-#pragma warning disable 0649
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     private float _gravity = -9.81f;
 
     [SerializeField]
+    private float _rotationLerpValue = 0.01f;
+
+    [SerializeField]
     private DataObject data = null;
 
     [SerializeField]
@@ -50,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     private float _time = 0f;
     private Vector3 _startHeadPosition;
     private float _progress = 0f;
+    private Quaternion _rotation;
+    private Quaternion _rotationTarget;
 
     // Public
     public void InitPosition(Vector3 startPosition)
@@ -113,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FreeMoveWithControls()
     {
-
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -157,8 +161,13 @@ public class PlayerMovement : MonoBehaviour
         position.x = _pathCreator.path.GetPointAtTime(_progress).x;
         position.z = _pathCreator.path.GetPointAtTime(_progress).z;
 
-        Quaternion rotation = transform.rotation;
-        rotation.y = _pathCreator.path.GetRotation(_progress).y;
+        _rotationTarget = transform.rotation;
+        _rotationTarget.y = _pathCreator.path.GetRotation(_progress).y;
+
+        _rotation.x = _rotationTarget.x;
+        _rotation.z = _rotationTarget.z;
+        _rotation.y = Lerp(_rotation.y, _rotationTarget.y, _rotationLerpValue);
+        // _rotation.y = _pathCreator.path.GetRotation(_progress).y;
 
         // Head Bob
         float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * z;
@@ -167,8 +176,13 @@ public class PlayerMovement : MonoBehaviour
         // Apply direct position and rotation to player controller
         _controller.enabled = false;
         _controller.transform.position = position;
-        _controller.transform.rotation = rotation;
+        _controller.transform.rotation = _rotation;
         _controller.enabled = true;
+    }
+
+    private float Lerp(float start, float end, float value)
+    {
+        return (1f - value) * start + value * end;
     }
 
     private void MoveAlongPathWithSound()
@@ -185,8 +199,13 @@ public class PlayerMovement : MonoBehaviour
         position.x = _pathCreator.path.GetPointAtTime(_progress).x;
         position.z = _pathCreator.path.GetPointAtTime(_progress).z;
 
-        Quaternion rotation = transform.rotation;
-        rotation.y = _pathCreator.path.GetRotation(_progress).y;
+        _rotationTarget = transform.rotation;
+        _rotationTarget.y = _pathCreator.path.GetRotation(_progress).y;
+
+        _rotation.x = _rotationTarget.x;
+        _rotation.z = _rotationTarget.z;
+        _rotation.y = Lerp(_rotation.y, _rotationTarget.y, _rotationLerpValue);
+        // _rotation.y = _pathCreator.path.GetRotation(_progress).y;
 
         // Head Bob
         float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * _acceleration.z;
@@ -195,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
         // Apply direct position and rotation to player controller
         _controller.enabled = false;
         _controller.transform.position = position;
-        _controller.transform.rotation = rotation;
+        _controller.transform.rotation = _rotation;
         _controller.enabled = true;
     }
 
@@ -206,6 +225,8 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _head = transform.Find("Head");
         _groundCheck = transform.Find("Ground Check");
+        _rotation = transform.rotation;
+        _rotationTarget = transform.rotation;
         data.SetVolume(0f);
         data.SetGameStarted(gameStartOnAwake);
     }
