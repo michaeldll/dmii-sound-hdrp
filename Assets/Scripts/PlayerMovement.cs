@@ -1,26 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PathCreation;
+
+#pragma warning disable 0649
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    public LayerMask _groundLayer;
+    private LayerMask _groundLayer;
 
     [SerializeField]
-    public float _speed = 10f;
+    private float _speed = 10f;
 
     [SerializeField]
-    public float _rotationSpeed = 5f;
+    private float _rotationSpeed = 5f;
 
     [SerializeField]
-    public float _gravity = -9.81f;
+    private float _gravity = -9.81f;
 
     [SerializeField]
-    public float _headBobAmplitude = 0.5f;
+    private float _headBobAmplitude = 0.5f;
 
     [SerializeField]
-    public float _headBobSpeed = 0.1f;
+    private float _headBobSpeed = 0.1f;
+
+    [SerializeField]
+    private PathCreator _pathCreator;
+
+    enum Modes
+    {
+        freeMoveWithControls,
+        freeMoveWithSound,
+        moveAlongPathWithControls,
+        moveAlongPathWithSound
+    };
+
+    [SerializeField]
+    private Modes _movementMode = Modes.freeMoveWithControls;
 
     private Transform _head;
     private CharacterController _controller;
@@ -30,11 +47,70 @@ public class PlayerMovement : MonoBehaviour
     private bool _isGrounded;
     private float _time = 0f;
     private Vector3 _startHeadPosition;
+    private float _progress = 0f;
 
     // Public
     public void InitPosition(Vector3 startPosition)
     {
         transform.position = startPosition;
+    }
+
+    private void HandleMove()
+    {
+        if (_movementMode == Modes.freeMoveWithControls)
+        {
+            FreeMoveWithControls();
+        }
+        else if (_movementMode == Modes.freeMoveWithSound)
+        {
+            FreeMoveWithSound();
+        }
+        else if (_movementMode == Modes.moveAlongPathWithControls)
+        {
+            MoveAlongPathWithControls();
+        }
+        else if (_movementMode == Modes.moveAlongPathWithSound)
+        {
+            MoveAlongPathWithSound();
+        }
+    }
+
+    private void FreeMoveWithControls()
+    {
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        // Head Bob
+        float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * z;
+        _head.localPosition = new Vector3(0, _startHeadPosition.y + offsetY, 0);
+
+        // Movements
+        Vector3 move = transform.forward * z;
+        Vector3 moveDirection = new Vector3(0, x, 0);
+
+        _controller.Move(move * _speed * Time.deltaTime);
+        transform.Rotate(moveDirection * _rotationSpeed * Time.deltaTime);
+    }
+
+    private void FreeMoveWithSound()
+    {
+
+    }
+
+    private void MoveAlongPathWithControls()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        // Head Bob
+        float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * z;
+        _head.localPosition = new Vector3(0, _startHeadPosition.y + offsetY, 0);
+    }
+
+    private void MoveAlongPathWithSound()
+    {
+
     }
 
     // Hooks
@@ -54,27 +130,7 @@ public class PlayerMovement : MonoBehaviour
             _velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        // Head Bob
-        float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * z;
-        _head.localPosition = new Vector3(0, _startHeadPosition.y + offsetY, 0);
-
-        // Movements
-        Vector3 move = transform.forward * z;
-        Vector3 moveDirection = new Vector3(0, x, 0);
-
-        _controller.Move(move * _speed * Time.deltaTime);
-        transform.Rotate(moveDirection * _rotationSpeed * Time.deltaTime);
-
-        // Not used but might be useful in the future
-        Vector3 direction = new Vector3(x, 0, z).normalized;
-        float targetAngle;
-        if (direction.magnitude > 0.1f)
-        {
-            targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        }
+        HandleMove();
 
         // Gravity
         _velocity.y += _gravity * Time.deltaTime;
