@@ -30,14 +30,14 @@ public class PlayerMovement : MonoBehaviour
 
     enum Modes
     {
-        freeMoveWithControls,
-        freeMoveWithSound,
-        moveAlongPathWithControls,
-        moveAlongPathWithSound
+        FreeMoveWithControls,
+        FreeMoveWithSound,
+        MoveAlongPathWithControls,
+        MoveAlongPathWithSound
     };
 
     [SerializeField]
-    private Modes _movementMode = Modes.freeMoveWithControls;
+    private Modes _movementMode = Modes.FreeMoveWithControls;
 
     private Transform _head;
     private CharacterController _controller;
@@ -57,19 +57,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMove()
     {
-        if (_movementMode == Modes.freeMoveWithControls)
+        if (_movementMode == Modes.FreeMoveWithControls)
         {
             FreeMoveWithControls();
         }
-        else if (_movementMode == Modes.freeMoveWithSound)
+        else if (_movementMode == Modes.FreeMoveWithSound)
         {
             FreeMoveWithSound();
         }
-        else if (_movementMode == Modes.moveAlongPathWithControls)
+        else if (_movementMode == Modes.MoveAlongPathWithControls)
         {
             MoveAlongPathWithControls();
         }
-        else if (_movementMode == Modes.moveAlongPathWithSound)
+        else if (_movementMode == Modes.MoveAlongPathWithSound)
         {
             MoveAlongPathWithSound();
         }
