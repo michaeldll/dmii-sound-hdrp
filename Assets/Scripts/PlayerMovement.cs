@@ -25,9 +25,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _headBobSpeed = 0.1f;
 
-    [SerializeField]
-    private PathCreator _pathCreator;
-
     enum Modes
     {
         FreeMoveWithControls,
@@ -45,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool gameStartOnAwake = true;
 
+    private PathCreator _pathCreator;
     private Transform _head;
     private CharacterController _controller;
     private Transform _groundCheck;
@@ -61,6 +59,17 @@ public class PlayerMovement : MonoBehaviour
         transform.position = startPosition;
     }
 
+    public void SetActivePath(PathCreator path)
+    {
+        _pathCreator = path;
+    }
+
+    public void ResetProgress()
+    {
+        _progress = 0f;
+    }
+
+    // Private
     private void HandleMove()
     {
         if (_movementMode == Modes.FreeMoveWithControls)
