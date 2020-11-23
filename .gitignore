@@ -61,4 +61,4 @@ crashlytics-build.properties
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-.Models/
+Assets/Models/

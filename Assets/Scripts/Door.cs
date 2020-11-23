@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField]
     private Navigation _worldsNavigation = null;
-    
+
     [SerializeField]
     private string _type = null;
 
@@ -28,8 +28,11 @@ public class Door : MonoBehaviour
     public void SetDestination(int id, int direction)
     {
         string destinationWorldName = "World_" + id.ToString();
+        Debug.Log(destinationWorldName);
         _destinationWorldGameObject = GameObject.Find(destinationWorldName);
+        Debug.Log(_destinationWorldGameObject);
         _destinationWorld = _destinationWorldGameObject.GetComponent<World>();
+        Debug.Log(_destinationWorld);
         _destinationDoorTransform = direction == -1 ? _destinationWorld.doorLeave.transform : _destinationWorld.doorEnter.transform;
     }
 
@@ -47,7 +50,7 @@ public class Door : MonoBehaviour
     {
         if (!_isVisible) return;
         _isVisible = false;
-    
+
         Transform portal = transform.Find("Portal");
         Vector3 scale = new Vector3(0, 1, 1);
         portal.DOScale(scale, 1f);
@@ -103,7 +106,8 @@ public class Door : MonoBehaviour
     }
 
     // Hooks
-    void Awake() {
+    void Awake()
+    {
         _world = GetComponentInParent<World>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerCharacterController = _player.GetComponentInChildren<CharacterController>();
@@ -123,7 +127,7 @@ public class Door : MonoBehaviour
 
         InitAppearance();
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
