@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fad17ce3f9b42248c501a30f5082f7, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
-  micVolumeNormalized: 0
-  isGameStarted: 0
-  lookAtObject: {fileID: 0}
+  micVolumeNormalized: 0.10928659
+  isGameStarted: 1
