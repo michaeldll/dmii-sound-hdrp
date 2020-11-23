@@ -436,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
     - target: {fileID: 7270311194163680062, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
       propertyPath: _movementMode
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7270311194163680062, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
       propertyPath: _settingsManager
@@ -573,15 +573,39 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6345e12f2f84b439083099cf0bc4dfaa, type: 2}
     - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].z
-      value: -6.5716553
+      value: -24.782959
       objectReference: {fileID: 0}
     - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].z
-      value: 27.282593
+      value: -16.669062
       objectReference: {fileID: 0}
     - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[3].z
-      value: 40.57959
+      value: -11.8845825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: editorData._bezierPath.points.Array.data[2].x
+      value: 10.337936
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: editorData._bezierPath.points.Array.data[4].x
+      value: -10.421062
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: editorData._bezierPath.points.Array.data[4].z
+      value: 5.7408447
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: editorData._bezierPath.points.Array.data[5].z
+      value: 18.462646
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: editorData._bezierPath.points.Array.data[3].x
+      value: 5.905923
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457063876753486689, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: editorData._bezierPath.points.Array.data[1].x
+      value: -3.2576714
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}

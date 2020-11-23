@@ -1,7 +1,7 @@
+#pragma warning disable 0649
+
 using UnityEngine;
 using UnityEngine.UI;
-
-#pragma warning disable 0649
 
 sealed class UIManager : MonoBehaviour
 {
