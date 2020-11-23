@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb96cf86c2776489cb02879fdb140b26, type: 3}
+  m_Name: Player Settings Manager
+  m_EditorClassIdentifier: 
+  freeMoveWithControls: {fileID: 11400000, guid: 8116dda644c62487f8dcc9bce6439378, type: 2}
+  freeMoveWithSound: {fileID: 11400000, guid: e9316eaee883f44da811c8cc8ef1b7af, type: 2}
+  moveAlongPathWithControls: {fileID: 11400000, guid: df5e7fb7683db4795b2425296c8c53c4, type: 2}
+  moveAlongPathWithSound: {fileID: 11400000, guid: 4abee6754d06c48788e1c81f20d8f015, type: 2}

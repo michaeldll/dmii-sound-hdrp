@@ -7,24 +7,6 @@ using PathCreation;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask _groundLayer;
-
-    [SerializeField]
-    private float _speed = 10f;
-
-    [SerializeField]
-    private float _rotationSpeed = 5f;
-
-    [SerializeField]
-    private float _gravity = -9.81f;
-
-    [SerializeField]
-    private float _headBobAmplitude = 0.5f;
-
-    [SerializeField]
-    private float _headBobSpeed = 0.1f;
-
     enum Modes
     {
         FreeMoveWithControls,
@@ -37,10 +19,26 @@ public class PlayerMovement : MonoBehaviour
     private Modes _movementMode = Modes.FreeMoveWithControls;
 
     [SerializeField]
+    private PlayerSettingsManager _settingsManager;
+
+    [SerializeField]
+    private LayerMask _groundLayer;
+
+    [SerializeField]
+    private float _gravity = -9.81f;
+
+    [SerializeField]
     private DataObject data = null;
 
     [SerializeField]
     private bool gameStartOnAwake = true;
+
+    private PlayerSettings _settings;
+
+    private float _speed = 10f;
+    private float _rotationSpeed = 5f;
+    private float _headBobAmplitude = 0.5f;
+    private float _headBobSpeed = 0.1f;
 
     private PathCreator _pathCreator;
     private Transform _head;
@@ -72,22 +70,45 @@ public class PlayerMovement : MonoBehaviour
     // Private
     private void HandleMove()
     {
-        if (_movementMode == Modes.FreeMoveWithControls)
+        switch (_movementMode)
         {
-            FreeMoveWithControls();
+            case Modes.FreeMoveWithControls :
+                FreeMoveWithControls();
+                break;
+            case Modes.FreeMoveWithSound :
+                FreeMoveWithSound();
+                break;
+            case Modes.MoveAlongPathWithControls :
+                MoveAlongPathWithControls();
+                break;
+            case Modes.MoveAlongPathWithSound :
+                MoveAlongPathWithSound();
+                break;
         }
-        else if (_movementMode == Modes.FreeMoveWithSound)
+    }
+
+    private void SetupSettings()
+    {
+        switch (_movementMode)
         {
-            FreeMoveWithSound();
+            case Modes.FreeMoveWithControls :
+                _settings = _settingsManager.freeMoveWithControls;
+                break;
+            case Modes.FreeMoveWithSound :
+                _settings = _settingsManager.freeMoveWithSound;
+                break;
+            case Modes.MoveAlongPathWithControls :
+                _settings = _settingsManager.moveAlongPathWithControls;
+                break;
+            case Modes.MoveAlongPathWithSound :
+                _settings = _settingsManager.moveAlongPathWithSound;
+                break;
         }
-        else if (_movementMode == Modes.MoveAlongPathWithControls)
-        {
-            MoveAlongPathWithControls();
-        }
-        else if (_movementMode == Modes.MoveAlongPathWithSound)
-        {
-            MoveAlongPathWithSound();
-        }
+
+        _speed = _settings.speed;
+        _rotationSpeed = _settings.rotationSpeed;
+        _headBobAmplitude = _settings.headBobAmplitude;
+        _headBobSpeed = _settings.headBobSpeed;
     }
 
     private void FreeMoveWithControls()
@@ -181,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
     // Hooks
     void Awake()
     {
+        SetupSettings();
         _controller = GetComponent<CharacterController>();
         _head = transform.Find("Head");
         _groundCheck = transform.Find("Ground Check");
@@ -190,6 +212,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Useful to be able to edit settings on play mode
+        SetupSettings();
+
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundLayer);
 
         if (_isGrounded && _velocity.y < 0)
