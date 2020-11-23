@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PathCreation;
 
 public class World : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class World : MonoBehaviour
     [SerializeField]
     private VirtualPlayer _virtualPlayer = null;
 
+    [SerializeField]
+    private PlayerMovement _player = null;
+
+    private PathCreator _path;
     private int _id;
     private bool _isActive;
 
@@ -25,6 +30,9 @@ public class World : MonoBehaviour
     public void Enter()
     {
         UpdateNavigation();
+
+        _player.SetActivePath(_path);
+        _player.ResetProgress();
 
         doorEnter.TransitionIn();
         TimeoutCallback transitionIn = doorLeave.TransitionIn;
@@ -36,7 +44,6 @@ public class World : MonoBehaviour
     public void Leave()
     {
         doorLeave.TransitionOut();
-
         // Debug.Log("Leave World : " + _id);
     }
 
@@ -56,10 +63,13 @@ public class World : MonoBehaviour
     }
 
     // Hooks
-    void Awake() {
+    void Awake()
+    {
         Door[] doors = GetComponentsInChildren<Door>();
         doorEnter = doors[0].name == "Door Enter" ? doors[0] : doors[1];
-        doorLeave = doors[1].name == "Door Leave" ? doors[1] : doors[0];   
+        doorLeave = doors[1].name == "Door Leave" ? doors[1] : doors[0];
+
+        _path = GetComponentInChildren<PathCreator>();
 
         string[] nameChars = this.name.Split(char.Parse("_"));
         _id = int.Parse(nameChars[nameChars.Length - 1]);
