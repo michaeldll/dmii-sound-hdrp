@@ -436,8 +436,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
     - target: {fileID: 7270311194163680062, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
       propertyPath: _movementMode
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7270311194163680062, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
+      propertyPath: _settingsManager
+      value: 
+      objectReference: {fileID: 11400000, guid: de30e98ebc4ff47328c0593f123b950d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
 --- !u!1 &1491229152
