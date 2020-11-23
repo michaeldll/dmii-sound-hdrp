@@ -100,12 +100,29 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveAlongPathWithControls()
     {
-        float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+        // Update progress from 0 to almost 1
+        _progress += z * _speed * Time.deltaTime;
+        _progress = Mathf.Clamp(_progress, 0f, 0.999f);
+
+        // Use x and z position from path but preserve y
+        Vector3 position = transform.position;
+        position.x = _pathCreator.path.GetPointAtTime(_progress).x;
+        position.z = _pathCreator.path.GetPointAtTime(_progress).z;
+
+        Quaternion rotation = transform.rotation;
+        rotation.y = _pathCreator.path.GetRotation(_progress).y;
 
         // Head Bob
         float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * z;
         _head.localPosition = new Vector3(0, _startHeadPosition.y + offsetY, 0);
+
+        // Apply direct position and rotation to player controller
+        _controller.enabled = false;
+        _controller.transform.position = position;
+        _controller.transform.rotation = rotation;
+        _controller.enabled = true;
     }
 
     private void MoveAlongPathWithSound()
