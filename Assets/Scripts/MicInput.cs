@@ -23,6 +23,9 @@ public class MicInput : MonoBehaviour
     public float micLoudnessinDecibels;
     public List<string> allDevices;
     public string device;
+    public float micNormalized;
+    public float amplitude = 10f;
+    public float minimumLimitDb = -70f;
     
     private AudioClip _clipRecord;
     private AudioClip _recordedClip; 
@@ -136,8 +139,12 @@ public class MicInput : MonoBehaviour
         // pass the value to a static var so we can access it from anywhere
         _micLoudness = MicrophoneLevelMax();
         micLoudnessinDecibels = MicrophoneLevelMaxDecibels();
-       
-        data.SetVolume(Mathf.Abs(micLoudnessinDecibels));
+        if(micLoudnessinDecibels > minimumLimitDb){
+            micNormalized = Mathf.Clamp((1 / Mathf.Abs(micLoudnessinDecibels) * amplitude), 0, 1);
+            data.SetVolume(micNormalized);
+        }else{
+            data.SetVolume(0f);
+        }
     }
  
    
@@ -150,15 +157,15 @@ public class MicInput : MonoBehaviour
     }
  
     //stop mic when loading a new level or quit application
-    void OnDisable()
-    {
-        StopMicrophone();
-    }
+    // void OnDisable()
+    // {
+    //     StopMicrophone();
+    // }
  
-    void OnDestroy()
-    {
-        StopMicrophone();
-    }
+    // void OnDestroy()
+    // {
+    //     StopMicrophone();
+    // }
  
  
     // make sure the mic gets started & stopped when application gets focused
@@ -177,7 +184,7 @@ public class MicInput : MonoBehaviour
         if (!focus)
         {
             //Debug.Log("Pause");
-            StopMicrophone();
+            // StopMicrophone();
             //Debug.Log("Stop Mic");
  
         }

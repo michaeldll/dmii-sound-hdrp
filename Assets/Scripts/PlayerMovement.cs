@@ -39,6 +39,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Modes _movementMode = Modes.FreeMoveWithControls;
 
+    [SerializeField] 
+    private DataObject data = null;
+
+    [SerializeField] 
+    private bool gameStartOnAwake = true;
+
     private Transform _head;
     private CharacterController _controller;
     private Transform _groundCheck;
@@ -95,7 +101,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void FreeMoveWithSound()
     {
+        Vector3 _acceleration = new Vector3();
+        _acceleration.z = data.micVolumeNormalized;
 
+        // Head Bob
+        float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * _acceleration.z;
+        _head.localPosition = new Vector3(0, _startHeadPosition.y + offsetY, 0);
+
+        //Movements
+        Vector3 move = transform.forward * _acceleration.z;
+        
+        _controller.Move(move * _speed * Time.deltaTime);
     }
 
     private void MoveAlongPathWithControls()
@@ -136,6 +152,8 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _head = transform.Find("Head");
         _groundCheck = transform.Find("Ground Check");
+        data.SetVolume(0f);
+        data.SetGameStarted(gameStartOnAwake);
     }
 
     void Update()
