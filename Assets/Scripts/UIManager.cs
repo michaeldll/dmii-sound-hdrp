@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+#pragma warning disable 0649
+
 sealed class UIManager : MonoBehaviour
 {
     #region Scene object references
