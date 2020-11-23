@@ -1106,6 +1106,6 @@ MonoBehaviour:
   _headBobAmplitude: 0.5
   _headBobSpeed: 0.5
   _pathCreator: {fileID: 704717791}
-  _movementMode: 1
+  _movementMode: 3
   data: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
   gameStartOnAwake: 1
