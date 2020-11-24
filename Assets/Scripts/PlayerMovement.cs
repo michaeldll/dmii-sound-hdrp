@@ -59,7 +59,9 @@ public class PlayerMovement : MonoBehaviour
     // Public
     public void InitPosition(Vector3 startPosition)
     {
-        transform.position = startPosition;
+        Vector3 position = startPosition;
+        position.y = transform.position.y;
+        transform.position = position;
     }
 
     public void SetActivePath(PathCreator path)
@@ -70,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     public void ResetProgress()
     {
         _progress = 0f;
+        // _rotationTarget = Quaternion.LookRotation(transform.position, Vector3.forward);
     }
 
     // Private
@@ -167,7 +170,6 @@ public class PlayerMovement : MonoBehaviour
         _rotation.x = _rotationTarget.x;
         _rotation.z = _rotationTarget.z;
         _rotation.y = Lerp(_rotation.y, _rotationTarget.y, _rotationLerpValue);
-        // _rotation.y = _pathCreator.path.GetRotation(_progress).y;
 
         // Head Bob
         float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * z;
@@ -205,7 +207,6 @@ public class PlayerMovement : MonoBehaviour
         _rotation.x = _rotationTarget.x;
         _rotation.z = _rotationTarget.z;
         _rotation.y = Lerp(_rotation.y, _rotationTarget.y, _rotationLerpValue);
-        // _rotation.y = _pathCreator.path.GetRotation(_progress).y;
 
         // Head Bob
         float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * _acceleration.z;

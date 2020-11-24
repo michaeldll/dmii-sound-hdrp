@@ -58,8 +58,7 @@ public class GameManager : MonoBehaviour
         }
 
         _worldsNavigation.InitNavigation();
-        //_playerMovement.InitPosition(_worlds[_worldsNavigation.active].transform.position);
-        Debug.Log(_worlds[_worldsNavigation.active]);
+        _playerMovement.InitPosition(_worlds[_worldsNavigation.active].transform.position);
         _worlds[_worldsNavigation.active].Enter();
     }
 }
