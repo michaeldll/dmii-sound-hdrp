@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787b9578c9a846e41b264ff55b4588d2, type: 3}
   m_Name: Worlds Navigation
   m_EditorClassIdentifier: 
-  order: 00000000010000000200000003000000
-  active: 2
-  previous: 1
-  next: 3
+  order: 0100000000000000
+  active: 1
+  previous: 0
+  next: 0
