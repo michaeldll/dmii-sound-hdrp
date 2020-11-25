@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 2998899303274439165}
   - component: {fileID: 4727301803997068239}
   - component: {fileID: 8169289393913936942}
+  - component: {fileID: 1950631602164064780}
   m_Layer: 0
   m_Name: Cailloux Sound
   m_TagString: Untagged
@@ -197,3 +198,27 @@ MonoBehaviour:
   value: 0
   funcedValue: 0
   targetLightIntensity: 25
+  flicker: 1
+  flickerAmplitude: 1
+  flickerFrequency: 1
+  flickerIntensity: 0.1
+--- !u!114 &1950631602164064780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8169289393913936943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1161a834e1b62714ea841c69301e9c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 973626598718748171}
+  data: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
+  amplitude: 0.1
+  value: 0
+  funcedValue: 0
+  floatAmplitude: 1
+  floatFrequency: 0.01
+  colorsEase: 8
