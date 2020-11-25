@@ -182,7 +182,8 @@ MonoBehaviour:
   - {fileID: 3926392071642203257}
   - {fileID: 3926392070686020941}
   data: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
-  acceleration: 0.01
+  acceleration: 0.0001
+  _accelerationFactor: 0
 --- !u!1 &3926392070877974025
 GameObject:
   m_ObjectHideFlags: 0

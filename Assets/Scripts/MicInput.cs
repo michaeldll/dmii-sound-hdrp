@@ -16,7 +16,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class MicInput : MonoBehaviour
 {
     public DataObject data;
@@ -25,19 +25,19 @@ public class MicInput : MonoBehaviour
     public string device;
     public float micNormalized;
     public float amplitude = 10f;
-    public float minimumLimitDb = -70f;
-    
+    public float minimumLimitDb = -40f;
+
     private AudioClip _clipRecord;
-    private AudioClip _recordedClip; 
+    private AudioClip _recordedClip;
     private int _sampleWindow = 128;
     private float _micLoudness;
     private bool _isInitialized;
- 
+
     //mic initialization
     public void InitMic()
     {
         foreach (string micDevice in Microphone.devices)
-        {   
+        {
             allDevices.Add(micDevice);
         }
 
@@ -48,13 +48,13 @@ public class MicInput : MonoBehaviour
         _clipRecord = Microphone.Start(device, true, 999, 44100);
         _isInitialized = true;
     }
- 
+
     public void StopMicrophone()
     {
         Microphone.End(device);
         _isInitialized = false;
     }
- 
+
     //get data from microphone into audioclip
     float MicrophoneLevelMax()
     {
@@ -74,25 +74,25 @@ public class MicInput : MonoBehaviour
         }
         return levelMax;
     }
- 
+
     //get data from microphone into audioclip
     float MicrophoneLevelMaxDecibels()
     {
- 
+
         float db = 20 * Mathf.Log10(Mathf.Abs(_micLoudness));
- 
+
         return db;
     }
- 
+
     public float FloatLinearOfClip(AudioClip clip)
     {
         StopMicrophone();
- 
+
         _recordedClip = clip;
- 
+
         float levelMax = 0;
         float[] waveData = new float[_recordedClip.samples];
- 
+
         _recordedClip.GetData(waveData, 0);
         // Getting a peak on the last 128 samples
         for (int i = 0; i < _recordedClip.samples; i++)
@@ -105,16 +105,16 @@ public class MicInput : MonoBehaviour
         }
         return levelMax;
     }
- 
+
     public float DecibelsOfClip(AudioClip clip)
     {
         StopMicrophone();
- 
+
         _recordedClip = clip;
- 
+
         float levelMax = 0;
         float[] waveData = new float[_recordedClip.samples];
- 
+
         _recordedClip.GetData(waveData, 0);
         // Getting a peak on the last 128 samples
         for (int i = 0; i < _recordedClip.samples; i++)
@@ -125,56 +125,62 @@ public class MicInput : MonoBehaviour
                 levelMax = wavePeak;
             }
         }
- 
+
         float db = 20 * Mathf.Log10(Mathf.Abs(levelMax));
- 
+
         return db;
     }
- 
- 
- 
+
+
+
     void Update()
     {
         // levelMax equals to the highest normalized value power 2, a small number because < 1
         // pass the value to a static var so we can access it from anywhere
         _micLoudness = MicrophoneLevelMax();
         micLoudnessinDecibels = MicrophoneLevelMaxDecibels();
-        if(micLoudnessinDecibels > minimumLimitDb){
+        if (micLoudnessinDecibels > minimumLimitDb)
+        {
             micNormalized = Mathf.Clamp((1 / Mathf.Abs(micLoudnessinDecibels) * amplitude), 0, 1);
             data.SetVolume(micNormalized);
-        }else{
+        }
+        else
+        {
             data.SetVolume(0f);
         }
     }
- 
-   
-    
+
+
+
     // start mic when scene starts
     void OnEnable()
     {
         InitMic();
         _isInitialized = true;
     }
- 
+
     //stop mic when loading a new level or quit application
     // void OnDisable()
     // {
     //     StopMicrophone();
     // }
  
+
     // void OnDestroy()
     // {
     //     StopMicrophone();
     // }
  
  
+
+
     // make sure the mic gets started & stopped when application gets focused
     void OnApplicationFocus(bool focus)
     {
         if (focus)
         {
             //Debug.Log("Focus");
- 
+
             if (!_isInitialized)
             {
                 //Debug.Log("Init Mic");
@@ -186,7 +192,7 @@ public class MicInput : MonoBehaviour
             //Debug.Log("Pause");
             // StopMicrophone();
             //Debug.Log("Stop Mic");
- 
+
         }
     }
 }

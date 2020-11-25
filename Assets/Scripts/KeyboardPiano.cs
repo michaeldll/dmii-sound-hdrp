@@ -68,7 +68,7 @@ sealed class KeyboardPiano : MonoBehaviour
 
         audioSources[_sourceIndex].Play();
 
-        if (_accelerationFactor < 9) _accelerationFactor += 1;
+        if (_accelerationFactor < audioSources.Length) _accelerationFactor += 1;
     }
 
     void StopNote(string note)
@@ -83,7 +83,7 @@ sealed class KeyboardPiano : MonoBehaviour
 
         audioSources[_sourceIndex].Stop();
 
-        if (_accelerationFactor < 9) _accelerationFactor -= 1;
+        if (_accelerationFactor < audioSources.Length) _accelerationFactor -= 1;
     }
 
     void Update()
@@ -156,8 +156,8 @@ sealed class KeyboardPiano : MonoBehaviour
             StopNote("C4");
         }
 
-        if (_accelerationFactor > 0 && data.micVolumeNormalized <= (1 - acceleration)) data.SetVolume(data.micVolumeNormalized + acceleration * _accelerationFactor);
+        if (_accelerationFactor > 0 && data.micVolumeNormalized <= 1) data.SetVolume(data.micVolumeNormalized + acceleration * _accelerationFactor);
 
-        if (data.micVolumeNormalized > (acceleration / 2)) data.SetVolume(data.micVolumeNormalized - (acceleration) / 2);
+        else data.SetVolume(data.micVolumeNormalized - (acceleration) / 2);
     }
 }
