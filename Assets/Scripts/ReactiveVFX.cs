@@ -13,8 +13,13 @@ public class ReactiveVFX : MonoBehaviour
     [SerializeField]
     string propName = "";
 
+    [SerializeField]
     [Tooltip("Target VFX Float")]
     float number = 0f;
+
+    [SerializeField]
+    [Tooltip("Target VFX Int")]
+    int intNumber = 0;
 
     [SerializeField]
     float min = 0.04f;
@@ -22,15 +27,15 @@ public class ReactiveVFX : MonoBehaviour
     [SerializeField]
     float max = 0.5f;
 
-    [SerializeField]
-    Vector3 vector = new Vector3(1, 1, 1);
+    Vector3 _vector = new Vector3(1, 1, 1);
 
     [SerializeField]
     public PropType propType = PropType.Float;
     public enum PropType
     {
         Float,
-        Vector3
+        Vector3,
+        Int
     }
 
     [SerializeField]
@@ -45,16 +50,20 @@ public class ReactiveVFX : MonoBehaviour
         switch (propType)
         {
             case PropType.Float:
-                number = Mathf.Clamp(data.micVolumeNormalized * amplitude, min, max);
+                float clamp = Mathf.Clamp(data.micVolumeNormalized * amplitude, 0, 1);
+                number = clamp.Map(0, 1, min, max);
                 vfx.SetFloat(propName, number);
                 break;
 
             case PropType.Vector3:
-                // vector = vector * Mathf.Clamp(data.micVolumeNormalized * amplitude, min, max);
                 float value = data.micVolumeNormalized.Map(0, 1, min, max);
-                // vector = vector * 2f ;
-                Vector3 v = vector * value;
+                Vector3 v = _vector * value;
                 vfx.SetVector3(propName, v);
+                break;
+
+            case PropType.Int:
+                float initialValue = Mathf.Clamp(data.micVolumeNormalized * amplitude, min, max);
+                vfx.SetInt(propName, Mathf.RoundToInt(initialValue));
                 break;
 
             default:
