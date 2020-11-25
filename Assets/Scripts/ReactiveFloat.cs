@@ -5,19 +5,10 @@ using UnityEngine;
 public class ReactiveFloat : MonoBehaviour
 {
     [SerializeField]
-    Transform target;
-
-    [SerializeField]
     DataObject data;
 
     [SerializeField]
     float amplitude = 1;
-
-    [SerializeField]
-    float value;
-
-    [SerializeField]
-    float funcedValue;
 
     [SerializeField]
     float floatAmplitude = 1f;
@@ -25,53 +16,65 @@ public class ReactiveFloat : MonoBehaviour
     [SerializeField]
     float floatFrequency = 1f;
 
-    // [SerializeField]
-    // Vector3 direction = new Vector3(1, 2, 1);
+    [SerializeField]
+    FloatingType type = FloatingType.Sinus;
+    public enum FloatingType
+    {
+        Sinus,
+        PerlinNoise
+    }
 
     [SerializeField]
     EasingFunction.Ease colorsEase = EasingFunction.Ease.EaseInOutQuart;
+
     EasingFunction.Function _func;
     Vector3 _initialPos;
-    [SerializeField]
+    float _value;
+    float _funcedValue;
 
-    bool withSinus = false;
+    void Float()
+    {
+        // get easing function value
+        _value = data.micVolumeNormalized;
+        _funcedValue = _func(0, 1, _value);
+
+        switch (type) {
+            case FloatingType.Sinus:
+                float sin = Mathf.Sin(Time.frameCount * floatFrequency) * floatAmplitude;
+
+                // lerp values with easing function
+                Vector3 vec = transform.localPosition;
+                vec.Set(_initialPos.x, _initialPos.y + sin * amplitude, _initialPos.z);
+                transform.localPosition = vec;
+                break;
+
+            case FloatingType.PerlinNoise:
+                // get easing function value
+                _value = data.micVolumeNormalized;
+                _funcedValue = _func(0, 1, _value);
+
+                // Range over which height varies.
+                float heightScale = floatAmplitude;
+
+                // Distance covered per second along X axis of Perlin plane.
+                float xScale = floatFrequency;
+
+                float height = heightScale * Mathf.PerlinNoise(Time.time * xScale, 0.0f);
+                Vector3 pos = transform.localPosition;
+                pos.y = height + _initialPos.y;
+                transform.localPosition = pos;
+                break;
+
+            default:
+                break;
+        }
+    
+    }
 
     void Start()
     {
         _func = EasingFunction.GetEasingFunction(colorsEase);
-        _initialPos = target.localPosition;
-    }
-
-    void Float()
-    {
-        // "Bobbing" animation from 1D Perlin noise.
-        if (!withSinus)
-        {
-            // Range over which height varies.
-            float heightScale = 0.5f;
-
-            // Distance covered per second along X axis of Perlin plane.
-            float xScale = 0.5f;
-
-            float height = heightScale * Mathf.PerlinNoise(Time.time * xScale, 0.0f);
-            Vector3 pos = transform.localPosition;
-            pos.y = height + _initialPos.y;
-            transform.localPosition = pos;
-        }
-        else
-        {
-            //WITH SINUS
-            float sin = Mathf.Sin(Time.frameCount * floatFrequency) * floatAmplitude;
-
-            // get easing function value
-            value = data.micVolumeNormalized;
-            funcedValue = _func(0, 1, value);
-
-            // lerp values with easing function
-            Vector3 vec = target.localPosition;
-            vec.Set(_initialPos.x, _initialPos.y + sin * amplitude, _initialPos.z);
-            target.localPosition = vec;
-        }
+        _initialPos = transform.localPosition;
     }
 
     void Update()
