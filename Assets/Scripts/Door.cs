@@ -28,11 +28,8 @@ public class Door : MonoBehaviour
     public void SetDestination(int id, int direction)
     {
         string destinationWorldName = "World_" + id.ToString();
-        Debug.Log(destinationWorldName);
         _destinationWorldGameObject = GameObject.Find(destinationWorldName);
-        Debug.Log(_destinationWorldGameObject);
         _destinationWorld = _destinationWorldGameObject.GetComponent<World>();
-        Debug.Log(_destinationWorld);
         _destinationDoorTransform = direction == -1 ? _destinationWorld.doorLeave.transform : _destinationWorld.doorEnter.transform;
     }
 
