@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: _virtualPlayer
       value: 
       objectReference: {fileID: 957625491}
+    - target: {fileID: 1427711217216646583, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1722359509}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
 --- !u!114 &534308353 stripped
@@ -426,6 +430,14 @@ PrefabInstance:
       propertyPath: _groundLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 7270311194163680062, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
+      propertyPath: _settingsManager
+      value: 
+      objectReference: {fileID: 11400000, guid: de30e98ebc4ff47328c0593f123b950d, type: 2}
+    - target: {fileID: 7270311194163680062, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 590cf5a2680044be5bc305441427a6d1, type: 3}
 --- !u!1 &1491229152
@@ -547,6 +559,10 @@ PrefabInstance:
       propertyPath: _virtualPlayer
       value: 
       objectReference: {fileID: 957625491}
+    - target: {fileID: 1427711217216646583, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1722359509}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8371b9ee99f8402ca4bba0e3aa46980, type: 3}
 --- !u!114 &2004223356 stripped
