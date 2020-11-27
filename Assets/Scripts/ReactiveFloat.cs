@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,53 +8,40 @@ public class ReactiveFloat : MonoBehaviour
     DataObject data;
 
     [SerializeField]
-    float amplitude = 1;
+    float floatAmplitude = 0.2f;
 
     [SerializeField]
-    float floatAmplitude = 1f;
+    float floatFrequency = 0.5f;
 
     [SerializeField]
-    float floatFrequency = 1f;
-
-    [SerializeField]
-    FloatingType type = FloatingType.Sinus;
+    FloatingType type = FloatingType.PerlinNoise;
     public enum FloatingType
     {
         Sinus,
         PerlinNoise
     }
 
-    [SerializeField]
-    EasingFunction.Ease colorsEase = EasingFunction.Ease.EaseInOutQuart;
-
-    EasingFunction.Function _func;
     Vector3 _initialPos;
     float _value;
-    float _funcedValue;
 
     void Float()
     {
-        // get easing function value
-        _value = data.micVolumeNormalized;
-        _funcedValue = _func(0, 1, _value);
+        float volumeFloatAmplitude = floatAmplitude * data.micVolumeNormalized;
 
-        switch (type) {
+        switch (type)
+        {
             case FloatingType.Sinus:
-                float sin = Mathf.Sin(Time.frameCount * floatFrequency) * floatAmplitude;
+                float sin = Mathf.Sin(Time.frameCount * floatFrequency) * volumeFloatAmplitude;
 
                 // lerp values with easing function
                 Vector3 vec = transform.localPosition;
-                vec.Set(_initialPos.x, _initialPos.y + sin * amplitude, _initialPos.z);
+                vec.Set(_initialPos.x, _initialPos.y + sin, _initialPos.z);
                 transform.localPosition = vec;
                 break;
 
             case FloatingType.PerlinNoise:
-                // get easing function value
-                _value = data.micVolumeNormalized;
-                _funcedValue = _func(0, 1, _value);
-
                 // Range over which height varies.
-                float heightScale = floatAmplitude;
+                float heightScale = volumeFloatAmplitude;
 
                 // Distance covered per second along X axis of Perlin plane.
                 float xScale = floatFrequency;
@@ -68,12 +55,11 @@ public class ReactiveFloat : MonoBehaviour
             default:
                 break;
         }
-    
+
     }
 
     void Start()
     {
-        _func = EasingFunction.GetEasingFunction(colorsEase);
         _initialPos = transform.localPosition;
     }
 
