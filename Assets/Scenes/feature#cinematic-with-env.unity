@@ -1049,9 +1049,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1830d57bd7f84a50935a758e1e92365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 0
   _colorExposure: 0
   _volume: {fileID: 561308222}
-  _fadeOutDirector: {fileID: 0}
+  _fadeOutDirector: {fileID: 2023352186}
   _fadeInDirector: {fileID: 1741679372}
 --- !u!4 &840910675
 Transform:
@@ -2237,7 +2238,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 78858be61fbc4457bb4a7cc67cacf8ce, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
