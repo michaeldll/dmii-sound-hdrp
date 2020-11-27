@@ -2,88 +2,38 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 sealed class KeyboardPiano : MonoBehaviour
 {
     [SerializeField] int transpose = 12;
     [SerializeField] AudioSource[] audioSources = null;
+    // [SerializeField] List<AudioSource> audioSources = new List<AudioSource>; //TODO: improve with List
+    [SerializeField] List<string> keys = new List<string>() {
+        "a", "z", "e", "r", "t", "y", "u", "o", "p", "q", "w"
+    }; //TODO: improve with List
     [SerializeField] DataObject data;
     [SerializeField] float acceleration;
-    private int _sourceIndex = 0;
     public float _accelerationFactor = 0;
-
-    void GetNoteIndex(string note)
-    {
-        switch (note)
-        {
-            case "C3":
-                _sourceIndex = 0;
-                break;
-
-            case "D3":
-                _sourceIndex = 1;
-                break;
-
-            case "E3":
-                _sourceIndex = 2;
-                break;
-
-            case "F3":
-                _sourceIndex = 3;
-                break;
-
-            case "G3":
-                _sourceIndex = 4;
-                break;
-
-            case "A3":
-                _sourceIndex = 5;
-                break;
-
-            case "B3":
-                _sourceIndex = 6;
-                break;
-
-            case "C4":
-                _sourceIndex = 7;
-                break;
-
-            default:
-                break;
-        }
+    public KeyBoardSchema schema = KeyBoardSchema.French;
+    public enum KeyBoardSchema {
+        French,
+        English
     }
 
-    void PlayNote(string note)
+    void PlayNote(int index)
     {
         // Debug.Log(string.Format(
         //     "Note On #{0} ",
         //     note
         // ));
 
+        audioSources[index].pitch = Mathf.Pow(2, (1 + transpose) / 12);
 
-        GetNoteIndex(note);
-
-        audioSources[_sourceIndex].pitch = Mathf.Pow(2, (1 + transpose) / 12);
-
-        audioSources[_sourceIndex].Play();
+        audioSources[index].Play();
 
         if (_accelerationFactor < audioSources.Length) _accelerationFactor += 1;
-    }
-
-    void StopNote(string note)
-    {
-        // Debug.Log(string.Format(
-        //     "Note Off #{0} ",
-        //     note
-        // ));
-
-
-        GetNoteIndex(note);
-
-        audioSources[_sourceIndex].Stop();
-
-        if (_accelerationFactor < audioSources.Length) _accelerationFactor -= 1;
     }
 
     void Update()
@@ -91,73 +41,67 @@ sealed class KeyboardPiano : MonoBehaviour
         //keydown
         if (Input.GetKeyDown("a"))
         {
-            PlayNote("C3");
+            if(schema == KeyBoardSchema.French) PlayNote(0);
+            else if(schema == KeyBoardSchema.English) PlayNote(10);
         }
         if (Input.GetKeyDown("z"))
         {
-            PlayNote("D3");
+            if(schema == KeyBoardSchema.French) PlayNote(1);
+        }
+        if (Input.GetKeyDown("w"))
+        {
+            if(schema == KeyBoardSchema.English) PlayNote(1);
         }
         if (Input.GetKeyDown("e"))
         {
-            PlayNote("E3");
+            PlayNote(2);
         }
         if (Input.GetKeyDown("r"))
         {
-            PlayNote("F3");
+            PlayNote(3);
         }
         if (Input.GetKeyDown("t"))
         {
-            PlayNote("G3");
+            PlayNote(4);
         }
         if (Input.GetKeyDown("y"))
         {
-            PlayNote("A3");
+            PlayNote(5);
         }
         if (Input.GetKeyDown("u"))
         {
-            PlayNote("B3");
+            PlayNote(6);
         }
         if (Input.GetKeyDown("i"))
         {
-            PlayNote("C4");
+            PlayNote(7);
+        }
+        if (Input.GetKeyDown("o"))
+        {
+            PlayNote(8);
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            PlayNote(9);
+        }
+        if (Input.GetKeyDown("q"))
+        {
+            if(schema == KeyBoardSchema.French) PlayNote(10);
+            else if(schema == KeyBoardSchema.English) PlayNote(0);
         }
 
-        //keyup
-        if (Input.GetKeyUp("a"))
+        for(int i = 0; i < keys.Count; i++)
         {
-            StopNote("C3");
+            if (Input.GetKeyUp(keys[i]))
+            {
+                _accelerationFactor -= 1;
+            }
         }
-        if (Input.GetKeyUp("z"))
-        {
-            StopNote("D3");
-        }
-        if (Input.GetKeyUp("e"))
-        {
-            StopNote("E3");
-        }
-        if (Input.GetKeyUp("r"))
-        {
-            StopNote("F3");
-        }
-        if (Input.GetKeyUp("t"))
-        {
-            StopNote("G3");
-        }
-        if (Input.GetKeyUp("y"))
-        {
-            StopNote("A3");
-        }
-        if (Input.GetKeyUp("u"))
-        {
-            StopNote("B3");
-        }
-        if (Input.GetKeyUp("i"))
-        {
-            StopNote("C4");
-        }
+
+        if (Input.anyKey == false) _accelerationFactor = 0;
 
         if (_accelerationFactor > 0 && data.micVolumeNormalized <= 1) data.SetVolume(data.micVolumeNormalized + acceleration * _accelerationFactor);
 
-        else data.SetVolume(data.micVolumeNormalized - (acceleration) / 2);
+        else data.SetVolume(data.micVolumeNormalized - acceleration);
     }
 }
