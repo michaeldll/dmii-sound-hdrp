@@ -10,16 +10,19 @@ public class PlayerLookManager : MonoBehaviour
 
 	public void LookAt(Transform lookAt)
 	{
-		_cam2LookAt.LookAt = lookAt;
-		_cam1.m_Priority = 0;
-		_cam2LookAt.m_Priority = 1;
-	}
+        if (lookAt)
+        {
+			_cam2LookAt.LookAt = lookAt;
+			_cam1.m_Priority = 0;
+			_cam2LookAt.m_Priority = 1;
+		}
 
-	public void LookAtReset()
-    {
-		_cam2LookAt.LookAt = null;
-		_cam1.m_Priority = 1;
-		_cam2LookAt.m_Priority = 0;
+		else
+        {
+			_cam2LookAt.LookAt = null;
+			_cam1.m_Priority = 1;
+			_cam2LookAt.m_Priority = 0;
+		}
 	}
 
 	void Start()
@@ -27,7 +30,7 @@ public class PlayerLookManager : MonoBehaviour
 		CinemachineVirtualCamera[] cams;
 		cams = GetComponentsInChildren<CinemachineVirtualCamera>();
 		foreach(CinemachineVirtualCamera cam in cams)
-        {
+      {
 			switch (cam.tag){
 				case "NoFollowCamera":
 					_cam1 = cam;
@@ -40,6 +43,6 @@ public class PlayerLookManager : MonoBehaviour
 				default:
 					break;
             }	
-        }
+      }
 	}
 }
