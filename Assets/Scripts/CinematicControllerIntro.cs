@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class CinematicController : MonoBehaviour
+public class CinematicControllerIntro : MonoBehaviour
 {
+    [HideInInspector]
     public double duration;
 
     private PlayableDirector _introCinematicDirector;

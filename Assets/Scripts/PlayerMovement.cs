@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     public void InitPosition(Vector3 startPosition)
     {
         Vector3 position = startPosition;
-        position.y = transform.position.y;
+        position.y = 1.08f;
         transform.position = position;
     }
 

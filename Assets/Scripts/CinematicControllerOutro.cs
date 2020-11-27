@@ -7,8 +7,11 @@ using UnityEngine.Experimental.Rendering.Universal;
 using DG.Tweening;
 using UnityEngine.Playables;
 
-public class CinematicOutro : MonoBehaviour
+public class CinematicControllerOutro : MonoBehaviour
 {
+    [HideInInspector]
+    public double duration;
+
     [SerializeField]
     private float _colorExposure;
 
@@ -16,13 +19,21 @@ public class CinematicOutro : MonoBehaviour
     private Volume _volume;
 
     [SerializeField]
-    private PlayableDirector _director;
+    private PlayableDirector _fadeOutDirector;
+
+    [SerializeField]
+    private PlayableDirector _fadeInDirector;
 
     private ColorAdjustments _colorAdjustments;
 
-    public void FadeOut()
+    public void PlayCinematic()
     {
-        _director.Play();
+        _fadeOutDirector.Play();
+    }
+
+    public void Reset()
+    {
+        _fadeInDirector.Play();
     }
 
     // Hook
@@ -30,21 +41,12 @@ public class CinematicOutro : MonoBehaviour
     {
         _volume.profile.TryGet(out _colorAdjustments);
         _colorAdjustments.postExposure.value = 0f;
+
+        duration = _fadeOutDirector.duration;
     }
 
-    void Start()
+    void Update()
     {
-        FadeOut();
-    }
-
-    void Update() {
         _colorAdjustments.postExposure.value = _colorExposure;
-    }
-
-    void OnDrawGizmos() {
-        if (_colorAdjustments)
-        {
-            _colorAdjustments.postExposure.value = _colorExposure;
-        }
     }
 }

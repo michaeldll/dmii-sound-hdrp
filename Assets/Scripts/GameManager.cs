@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     private State _readyState = null;
 
     [SerializeField]
-    private CinematicController _introCinematicController;
+    private CinematicControllerIntro _cinematicControllerIntro;
+
+    [SerializeField]
+    private CinematicControllerOutro _cinematicControllerOutro;
 
     [SerializeField]
     private World[] _worlds = null;
@@ -25,19 +28,21 @@ public class GameManager : MonoBehaviour
 
     private delegate void TimeoutCallback();
 
-    private void PlayIntroCinematic()
-    {
-        _introCinematicController.PlayCinematic();
-        float duration = (float)_introCinematicController.duration;
-        TimeoutCallback onCompleteCallback = OnIntroCompleted;
-        StartCoroutine(SetTimeout(duration, OnIntroCompleted));
-        _introCinematicController.Reset();
-    }
+    private bool _isComplete = false;
 
-    private void OnIntroCompleted()
+    // Private
+    private void InitNavigation()
     {
-        _worlds[_worldsNavigation.active].Enter();
-        _readyState.SetState(true);
+        SetNavigationOrder();
+
+        if (_shuffleOrder)
+        {
+            ShuffleNavigationOrder();
+        }
+
+        _worldsNavigation.InitNavigation();
+        _readyState.SetState(false);
+        _playerMovement.InitPosition(_worlds[_worldsNavigation.active].transform.position);
     }
 
     private void ShuffleNavigationOrder()
@@ -73,21 +78,54 @@ public class GameManager : MonoBehaviour
         _worldsNavigation.SetOrder(order.ToArray());
     }
 
+    // Intro
+    private void PlayCinematicIntro()
+    {
+        _cinematicControllerIntro.PlayCinematic();
+        float duration = (float)_cinematicControllerIntro.duration;
+        TimeoutCallback onCompleteCallback = OnIntroCompleted;
+        StartCoroutine(SetTimeout(duration, OnIntroCompleted));
+    }
+
+    private void OnIntroCompleted()
+    {
+        _worlds[_worldsNavigation.active].Enter();
+        _readyState.SetState(true);
+        _cinematicControllerIntro.Reset();
+    }
+
+    // Outro
+    private void PlayCinematicOutro()
+    {
+        _cinematicControllerOutro.PlayCinematic();
+        float duration = (float)_cinematicControllerOutro.duration;
+        TimeoutCallback onCompleteCallback = OnOutroCompleted;
+        StartCoroutine(SetTimeout(duration, OnOutroCompleted));
+    }
+
+    private void OnOutroCompleted()
+    {
+        InitNavigation();
+        _cinematicControllerOutro.Reset();
+    }
+
     // Hooks
     void Start()
     {
-        SetNavigationOrder();
+        InitNavigation();
+        PlayCinematicIntro();
+    }
 
-        if (_shuffleOrder)
+    void Update()
+    {
+        if (!_isComplete)
         {
-            ShuffleNavigationOrder();
+            if (_worldsNavigation.IsComplete)
+            {
+                _isComplete = true;
+                PlayCinematicOutro();
+            }
         }
-
-        PlayIntroCinematic();
-
-        _worldsNavigation.InitNavigation();
-        _readyState.SetState(false);
-        _playerMovement.InitPosition(_worlds[_worldsNavigation.active].transform.position);
     }
 
     // Utils
