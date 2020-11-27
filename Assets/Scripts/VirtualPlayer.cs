@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class VirtualPlayer : MonoBehaviour
 {
+    [SerializeField]
+    private State _readyState = null;
+
     private Transform _player = null;
     private Transform _playerHead;
     private Camera _camera;
@@ -45,7 +48,7 @@ public class VirtualPlayer : MonoBehaviour
     }
 
     // Private
-    private void CreateRenderTexture() 
+    private void CreateRenderTexture()
     {
         if (_camera.targetTexture != null)
         {
@@ -62,7 +65,8 @@ public class VirtualPlayer : MonoBehaviour
     }
 
     // Hooks
-    void Awake() {
+    void Awake()
+    {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerHead = _player.Find("Head");
 
@@ -77,6 +81,8 @@ public class VirtualPlayer : MonoBehaviour
 
     void Update()
     {
+        if (!_readyState.GetState) return;
+
         Vector3 position = Vector3.zero;
         Vector3 playerOffsetFromDoor = _player.position - _doorActive.transform.position;
         position = _doorDestination.transform.position + playerOffsetFromDoor;

@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     private Navigation _worldsNavigation = null;
 
     [SerializeField]
+    private State _readyState = null;
+
+    [SerializeField]
+    private CinematicController _introCinematicController;
+
+    [SerializeField]
     private World[] _worlds = null;
 
     [SerializeField]
@@ -16,6 +22,23 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private PlayerMovement _playerMovement = null;
+
+    private delegate void TimeoutCallback();
+
+    private void PlayIntroCinematic()
+    {
+        _introCinematicController.PlayCinematic();
+        float duration = (float)_introCinematicController.duration;
+        TimeoutCallback onCompleteCallback = OnIntroCompleted;
+        StartCoroutine(SetTimeout(duration, OnIntroCompleted));
+        _introCinematicController.Reset();
+    }
+
+    private void OnIntroCompleted()
+    {
+        _worlds[_worldsNavigation.active].Enter();
+        _readyState.SetState(true);
+    }
 
     private void ShuffleNavigationOrder()
     {
@@ -60,8 +83,18 @@ public class GameManager : MonoBehaviour
             ShuffleNavigationOrder();
         }
 
+        PlayIntroCinematic();
+
         _worldsNavigation.InitNavigation();
+        _readyState.SetState(false);
         _playerMovement.InitPosition(_worlds[_worldsNavigation.active].transform.position);
-        _worlds[_worldsNavigation.active].Enter();
+    }
+
+    // Utils
+    IEnumerator SetTimeout(float time, TimeoutCallback Method)
+    {
+        yield return new WaitForSeconds(time);
+
+        Method();
     }
 }
