@@ -86,6 +86,7 @@ public class VirtualPlayer : MonoBehaviour
         Vector3 position = Vector3.zero;
         Vector3 playerOffsetFromDoor = _player.position - _doorActive.transform.position;
         position = _doorDestination.transform.position + playerOffsetFromDoor;
+        position.y = _player.position.y;
 
         transform.position = position;
         _head.localPosition = _playerHead.localPosition;
