@@ -41,7 +41,7 @@ public class Navigation : ScriptableObject
 
         if (_index >= order.Length - 1)
         {
-            _isComplete = true;
+            // _isComplete = true;
         }
     }
 

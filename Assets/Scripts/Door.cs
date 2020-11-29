@@ -77,9 +77,9 @@ public class Door : MonoBehaviour
 
     private void TeleportPlayer()
     {
-        Vector3 targetPosition = _destinationDoorTransform.position;
-        targetPosition.y = _player.position.y;
-        targetPosition.x = _player.position.x;
+        Vector3 playerOffsetFromDoor = _player.position - transform.position;
+
+        Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
 
         // Handler Character controller issue
         _playerCharacterController.enabled = false;

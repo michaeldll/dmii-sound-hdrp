@@ -13,6 +13,7 @@ public class CinematicControllerIntro : MonoBehaviour
     // Public
     public void PlayCinematic()
     {
+        if (!_introCinematicDirector) return;
         _introCinematicDirector.Play();
     }
 
@@ -25,6 +26,6 @@ public class CinematicControllerIntro : MonoBehaviour
     void Awake()
     {
         _introCinematicDirector = GetComponentInChildren<PlayableDirector>();
-        duration = _introCinematicDirector.duration;
+        duration = _introCinematicDirector ? _introCinematicDirector.duration: 0d;
     }
 }

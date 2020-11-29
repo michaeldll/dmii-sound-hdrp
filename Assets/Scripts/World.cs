@@ -37,14 +37,11 @@ public class World : MonoBehaviour
         doorEnter.TransitionIn();
         TimeoutCallback transitionIn = doorLeave.TransitionIn;
         StartCoroutine(SetTimeout(2f, transitionIn));
-
-        // Debug.Log("Enter World : " + _id);
     }
 
     public void Leave()
     {
         doorLeave.TransitionOut();
-        // Debug.Log("Leave World : " + _id);
     }
 
     private void UpdateNavigation()

@@ -83,15 +83,15 @@ public class VirtualPlayer : MonoBehaviour
     {
         if (!_readyState.GetState) return;
 
-        Vector3 position = Vector3.zero;
         Vector3 playerOffsetFromDoor = _player.position - _doorActive.transform.position;
-        position = _doorDestination.transform.position + playerOffsetFromDoor;
-        position.y = _player.position.y;
+
+        Vector3 position = _doorDestination.transform.position + playerOffsetFromDoor;;
 
         transform.position = position;
+        transform.rotation = _player.rotation;
+
         _head.localPosition = _playerHead.localPosition;
         _head.rotation = _playerHead.rotation;
-        transform.rotation = _player.rotation;
 
         // Todo: See why we have to set the texture each frame 
         _renderTextureMaterial.mainTexture = _camera.targetTexture;
