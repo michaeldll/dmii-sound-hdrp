@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     private State _readyState = null;
 
     [SerializeField]
+    private IntroUI _introUI;
+
+    [SerializeField]
     private CinematicControllerIntro _cinematicControllerIntro;
 
     [SerializeField]
@@ -111,8 +114,11 @@ public class GameManager : MonoBehaviour
 
     // Hooks
     void Start()
-    {
-        InitNavigation();
+    {   
+        // Play intro with Audio Input Selection
+        _introUI.Play();
+
+        // When Intro finished (IntroUI.cs - line 32) Play Cinematic
         PlayCinematicIntro();
     }
 
