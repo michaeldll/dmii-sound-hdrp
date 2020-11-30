@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerMovement _playerMovement = null;
 
+    [SerializeField]
+    private VoidEvent onInterfaceComplete;
+
     private delegate void TimeoutCallback();
 
     private bool _isComplete = false;
@@ -119,7 +122,8 @@ public class GameManager : MonoBehaviour
         _introUI.Play();
 
         // When Intro finished (IntroUI.cs - line 32) Play Cinematic
-        PlayCinematicIntro();
+        // PlayCinematicIntro();
+        onInterfaceComplete.e.AddListener(PlayCinematicIntro);
     }
 
     void Update()

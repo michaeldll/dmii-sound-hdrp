@@ -17,6 +17,9 @@ public class IntroUI : MonoBehaviour
     private bool _isInputSelected = false;
     private bool _isComplete = false;
 
+    [SerializeField]
+    private VoidEvent onInterfaceComplete;
+
     // Public
     public void Play()
     {
@@ -39,6 +42,7 @@ public class IntroUI : MonoBehaviour
     {
         _videoPlayerUI = GetComponentInChildren<VideoPlayerUI>();
         _timeline = GetComponentInChildren<PlayableDirector>();
+        onInterfaceComplete.e.AddListener(OnCompleteHandler);
     }
 
     void Update()
@@ -56,7 +60,7 @@ public class IntroUI : MonoBehaviour
         if (!_isComplete && _videoPlayerUI.isComplete)
         {
             _isComplete = true;
-            OnCompleteHandler();
+            onInterfaceComplete.e.Invoke();
         }
     }
 }
