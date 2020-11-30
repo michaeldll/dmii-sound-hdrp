@@ -100,14 +100,19 @@ public class VirtualPlayer : MonoBehaviour
 
         Vector3 position = _doorDestination.transform.position + playerOffsetFromDoor + offsetBetweenDoors;
 
-        transform.position = position;
-        transform.rotation = _player.rotation * _doorDestination.transform.rotation;
+        Quaternion offsetRotation = Quaternion.FromToRotation(_doorActive.transform.forward, -_doorDestination.transform.forward);
+        Quaternion rotation = _player.rotation * offsetRotation;
 
+        // Apply Positions / Rotations
+        transform.position = position;
+        transform.rotation = rotation;
         _head.localPosition = _playerHead.localPosition;
-        // _head.localPosition = _playerHead.rotation;
 
         // Todo: See why we have to set the texture each frame 
         _renderTextureMaterial.mainTexture = _camera.targetTexture;
+
+        // If Rotation DoorActive  0, 0, 0 --> This works
+        // transform.rotation = _player.rotation * _doorDestination.transform.rotation;
     }
 
     void OnDrawGizmos() {
