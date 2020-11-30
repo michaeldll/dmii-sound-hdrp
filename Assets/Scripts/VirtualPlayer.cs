@@ -146,6 +146,6 @@ public class VirtualPlayer : MonoBehaviour
         // Draw Guizmos Virtual Player
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(position, 3);
-        Gizmos.DrawLine(position, position + _player.forward * 5f);
+        Gizmos.DrawLine(position, position + (_player.forward + _doorActive.transform.forward +_doorDestination.transform.forward) * 5f);
     }
 }

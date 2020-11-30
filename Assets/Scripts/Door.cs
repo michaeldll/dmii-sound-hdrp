@@ -86,6 +86,7 @@ public class Door : MonoBehaviour
         // Handler Character controller issue
         _playerCharacterController.enabled = false;
         _playerCharacterController.transform.position = targetPosition;
+        _player.rotation = targetRotation;
         _playerCharacterController.transform.rotation = targetRotation;
         _playerCharacterController.enabled = true;
 
