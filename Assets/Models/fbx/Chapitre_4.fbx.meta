@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: ab6aa988f13bc4aaca71286c04e9f7e9
+guid: 271b88f6b2a4b374e8c4c9d268f4c967
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Porte
+    second: {fileID: 2100000, guid: f83bb3555af685746a9c02985e0f5795, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rock Wall 03
+    second: {fileID: 2100000, guid: d8f80a6f1a1057849957bd9ed64ed4df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plywood_01-dirty
+    second: {fileID: 2100000, guid: 46550b2c3aa33b34aa8af5539eeb99d8, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

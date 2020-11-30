@@ -14,7 +14,7 @@ public class MusicTransitionCollider : MonoBehaviour
     AudioMixer mixer;
 
     [SerializeField]
-    float transitionTime = 2.0f;
+    float transitionTime = 1.0f;
 
     public TransitionType type = TransitionType.ToActive;
     public enum TransitionType
@@ -25,7 +25,7 @@ public class MusicTransitionCollider : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        if(type == TransitionType.ToActive) snapshotActive.TransitionTo(transitionTime);
+        if (type == TransitionType.ToActive) snapshotActive.TransitionTo(transitionTime);
         else if (type == TransitionType.ToInactive) snapshotInactive.TransitionTo(transitionTime);
     }
 }

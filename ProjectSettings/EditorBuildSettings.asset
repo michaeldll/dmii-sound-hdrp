@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/feature#cinematic-with-env.unity
+    guid: 743eebfc7a1e14cf8a28aaac3aed3b2b
   m_configObjects: {}

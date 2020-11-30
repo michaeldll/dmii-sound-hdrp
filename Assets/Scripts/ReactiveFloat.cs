@@ -26,7 +26,9 @@ public class ReactiveFloat : MonoBehaviour
 
     void Float()
     {
-        float volumeFloatAmplitude = floatAmplitude * data.micVolumeNormalized;
+        float volumeFloatAmplitude;
+        if (data) volumeFloatAmplitude = floatAmplitude * data.micVolumeNormalized + 0.1f;
+        else volumeFloatAmplitude = 0.25f;
 
         switch (type)
         {

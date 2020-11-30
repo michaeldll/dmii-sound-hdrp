@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 8d662cb00d7d8d442ac7a1b1d9ca26af
+guid: ab6aa988f13bc4aaca71286c04e9f7e9
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete
+    second: {fileID: 2100000, guid: 9335967ba77e85e4583b3584e5b1356a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.2
+    second: {fileID: 2100000, guid: 47931866bbcf4ee4e948e02ec2761f6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c46b3ca7b35516140a73c8f36b4e2859, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sable
+    second: {fileID: 2100000, guid: 8aa7ea1486c883449a3cc60b202c314b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
