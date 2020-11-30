@@ -79,7 +79,9 @@ public class Door : MonoBehaviour
     {
         Vector3 playerOffsetFromDoor = _player.position - transform.position;
         Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
-        Quaternion targetRotation = _player.rotation * _destinationDoorTransform.rotation;
+
+        Quaternion offsetRotation = Quaternion.FromToRotation(transform.forward, -_destinationDoorTransform.forward);
+        Quaternion targetRotation = _player.rotation * offsetRotation;
 
         // Handler Character controller issue
         _playerCharacterController.enabled = false;
