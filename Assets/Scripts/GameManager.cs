@@ -113,7 +113,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitNavigation();
-        PlayCinematicIntro();
+        //lance les anims
+
+        //canvas 
+        // PlayCinematicIntro();
     }
 
     void Update()

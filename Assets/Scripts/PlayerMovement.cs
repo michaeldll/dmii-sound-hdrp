@@ -80,16 +80,16 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (_movementMode)
         {
-            case Modes.FreeMoveWithControls :
+            case Modes.FreeMoveWithControls:
                 FreeMoveWithControls();
                 break;
-            case Modes.FreeMoveWithSound :
+            case Modes.FreeMoveWithSound:
                 FreeMoveWithSound();
                 break;
-            case Modes.MoveAlongPathWithControls :
+            case Modes.MoveAlongPathWithControls:
                 MoveAlongPathWithControls();
                 break;
-            case Modes.MoveAlongPathWithSound :
+            case Modes.MoveAlongPathWithSound:
                 MoveAlongPathWithSound();
                 break;
         }
@@ -99,16 +99,16 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (_movementMode)
         {
-            case Modes.FreeMoveWithControls :
+            case Modes.FreeMoveWithControls:
                 _settings = _settingsManager.freeMoveWithControls;
                 break;
-            case Modes.FreeMoveWithSound :
+            case Modes.FreeMoveWithSound:
                 _settings = _settingsManager.freeMoveWithSound;
                 break;
-            case Modes.MoveAlongPathWithControls :
+            case Modes.MoveAlongPathWithControls:
                 _settings = _settingsManager.moveAlongPathWithControls;
                 break;
-            case Modes.MoveAlongPathWithSound :
+            case Modes.MoveAlongPathWithSound:
                 _settings = _settingsManager.moveAlongPathWithSound;
                 break;
         }

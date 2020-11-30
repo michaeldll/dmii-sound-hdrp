@@ -2416,6 +2416,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2963157568425465202, guid: 9b23ce561bf702649aeb752cf48874db, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3453445639809304471, guid: 9b23ce561bf702649aeb752cf48874db, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1
@@ -2805,10 +2809,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7270311193076804833}
-    - target: {fileID: 1427711218641272011, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
 --- !u!1 &1230244882 stripped
@@ -3065,6 +3065,18 @@ PrefabInstance:
     - target: {fileID: 1427711217216646583, guid: d0c324182816a6c419db76038b398595, type: 3}
       propertyPath: fogColor.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087675316860149873, guid: d0c324182816a6c419db76038b398595, type: 3}
+      propertyPath: nav
+      value: 
+      objectReference: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
+    - target: {fileID: 6436970753491700167, guid: d0c324182816a6c419db76038b398595, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436970753491700167, guid: d0c324182816a6c419db76038b398595, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 34.76
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c324182816a6c419db76038b398595, type: 3}
@@ -6000,7 +6012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc63d97aa403dd347a438acd0177c520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementMode: 3
+  _movementMode: 2
   _settingsManager: {fileID: 11400000, guid: de30e98ebc4ff47328c0593f123b950d, type: 2}
   _groundLayer:
     serializedVersion: 2
