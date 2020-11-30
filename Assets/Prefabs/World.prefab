@@ -32,7 +32,7 @@ Transform:
   - {fileID: 1427711218641272010}
   - {fileID: 6669728301307599230}
   - {fileID: 5113717487007570895}
-  - {fileID: 2993873363463662793}
+  - {fileID: 8642521444090465306}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -298,11 +298,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Keyboard Piano
       objectReference: {fileID: 0}
+    - target: {fileID: 7494377124636712809, guid: 7d7f0333807054547a3e4629a151a0e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d7f0333807054547a3e4629a151a0e3, type: 3}
---- !u!4 &2993873363463662793 stripped
+--- !u!4 &8642521444090465306 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3926392070779764666, guid: 7d7f0333807054547a3e4629a151a0e3, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7494377124636712809, guid: 7d7f0333807054547a3e4629a151a0e3, type: 3}
   m_PrefabInstance: {fileID: 2301628852406686579}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7793411461089070081
@@ -430,7 +434,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door Enter
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2776513899195272101, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
 --- !u!4 &6669728301307599230 stripped
 Transform:

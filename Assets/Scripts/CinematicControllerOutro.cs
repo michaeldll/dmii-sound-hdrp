@@ -28,25 +28,31 @@ public class CinematicControllerOutro : MonoBehaviour
 
     public void PlayCinematic()
     {
+        if (!_fadeOutDirector) return;
         _fadeOutDirector.Play();
     }
 
     public void Reset()
     {
+        if (!_fadeInDirector) return;
         _fadeInDirector.Play();
     }
 
     // Hook
     void Awake()
     {
-        _volume.profile.TryGet(out _colorAdjustments);
-        _colorAdjustments.postExposure.value = 0f;
+        if (_volume)
+        {
+            _volume.profile.TryGet(out _colorAdjustments);
+            _colorAdjustments.postExposure.value = 0f;
+        }
 
-        duration = _fadeOutDirector.duration;
+        duration = _fadeOutDirector ? _fadeOutDirector.duration : 0f;
     }
 
     void Update()
     {
+        if (!_colorAdjustments) return;
         _colorAdjustments.postExposure.value = _colorExposure;
     }
 }
