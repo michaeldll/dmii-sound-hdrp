@@ -10,7 +10,6 @@ public class PlayerLookManager : MonoBehaviour
 
     public void LookAt(Transform lookAt)
     {
-        Debug.Log(lookAt);
         if (lookAt)
         {
             _cam2LookAt.LookAt = lookAt;

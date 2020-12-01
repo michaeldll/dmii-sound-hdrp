@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private bool _isDebug = false;
 
     [SerializeField]
+    private bool _isDebugGameover = false;
+
+    [SerializeField]
     private Navigation _worldsNavigation = null;
 
     [SerializeField]
@@ -17,6 +20,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private State _gameOverState = null;
+
+    [SerializeField]
+    private bool _isGameOverAllowed = false;
 
     [SerializeField]
     private IntroUI _introUI;
@@ -50,8 +56,7 @@ public class GameManager : MonoBehaviour
     // Private
     private void InitNavigation()
     {
-        _worldsNavigation.Reset();
-        _readyState.SetState(false);
+        ResetStates();
 
         SetNavigationOrder();
 
@@ -95,6 +100,14 @@ public class GameManager : MonoBehaviour
         }
 
         _worldsNavigation.SetOrder(newOrder.ToArray());
+    }
+
+    private void ResetStates()
+    {
+        _worldsNavigation.Reset();
+        _gameOverState.SetState(false);
+        _readyState.SetState(false);
+        _isGameOverAllowed = false;
     }
 
     // Intro
@@ -193,7 +206,19 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (_worldsNavigation.IsGameOverAllowed) CheckVolume();
+        if (_worldsNavigation.index > 0)
+        {
+            _isGameOverAllowed = true;
+
+            if (_isDebug && !_isDebugGameover)
+            {
+                CheckVolume();
+            }
+            else if (!_isDebug)
+            {
+                CheckVolume();
+            }
+        }
     }
 
     // Utils

@@ -11,14 +11,7 @@ public class Navigation : ScriptableObject
     public int previous;
     public int next;
 
-    private int _index = 0;
-    public bool _isGameOverAllowed = false;
-
-    // Getter
-    public bool IsGameOverAllowed
-    {
-        get { return _isGameOverAllowed; }
-    }
+    public int index = 0;
 
     // Public
     public void SetOrder(int[] newOrder)
@@ -28,8 +21,7 @@ public class Navigation : ScriptableObject
 
     public void Reset()
     {
-        _index = 0;
-        _isGameOverAllowed = false;
+        index = 0;
     }
 
     public void InitNavigation()
@@ -39,25 +31,20 @@ public class Navigation : ScriptableObject
 
     public void SetNavigation()
     {
-        active = order[mod(_index, order.Length)];
-        next = order[mod(_index + 1, order.Length)];
-        previous = order[mod(_index - 1, order.Length)];
-
-        if (_index >= 1)
-        {
-            _isGameOverAllowed = true;
-        }
+        active = order[mod(index, order.Length)];
+        next = order[mod(index + 1, order.Length)];
+        previous = order[mod(index - 1, order.Length)];
     }
 
     public void Next()
     {
-        _index++;
+        index++;
         SetNavigation();
     }
 
     public void Previous()
     {
-        _index--;
+        index--;
         SetNavigation();
     }
 
