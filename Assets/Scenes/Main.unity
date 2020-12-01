@@ -2290,6 +2290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _readyState: {fileID: 11400000, guid: 903c4072357144f598bc366e0da8d2f1, type: 2}
+  _gameOverState: {fileID: 11400000, guid: 8da968caa28d9bd47a472b72c063d904, type: 2}
   _introUI: {fileID: 308992600}
   _cinematicControllerIntro: {fileID: 918504968}
   _cinematicControllerOutro: {fileID: 840910674}
@@ -3431,11 +3432,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000029551117
+      value: 0.000000029551117
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000038613654
+      value: -0.0000000038613654
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f53c12590db46f2a799ded51233a96, type: 3}

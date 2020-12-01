@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     private State _readyState = null;
 
     [SerializeField]
+    private State _gameOverState = null;
+
+    [SerializeField]
     private IntroUI _introUI;
 
     [SerializeField]
@@ -39,8 +42,10 @@ public class GameManager : MonoBehaviour
     private DataObject data = null;
 
     private delegate void TimeoutCallback();
-
     private bool _isComplete = false;
+    private List<float> _volumes = new List<float>();
+    Coroutine _co;
+
 
     // Private
     private void InitNavigation()
@@ -118,13 +123,31 @@ public class GameManager : MonoBehaviour
 
     private void OnOutroCompleted()
     {
-        InitNavigation();
+        InitNavigation(); //respawn player 
+        //TODO: checker l'ouverture des portes
         _cinematicControllerOutro.Reset();
+    }
+
+    private IEnumerator VolumeTimeout(){
+        return SetTimeout(2f, () => {
+            if (_worldsNavigation.IsGameOverAllowed) {
+                _gameOverState.SetState(true);
+                Debug.Log("Game Over");
+            };
+        });
+    }
+
+    private void CheckVolume(){
+        if (data.micVolumeNormalized > 0.1f) {
+            StopCoroutine("VolumeTimeout");
+            _co = StartCoroutine("VolumeTimeout");
+        }
     }
 
     // Hooks
     void Awake()
     {
+        _co = StartCoroutine("VolumeTimeout");
         _readyState.SetState(gameStartOnAwake);
         data.SetVolume(0f);
     }
@@ -139,13 +162,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!_isComplete)
+        CheckVolume(); 
+
+        if (_gameOverState.GetState)
         {
-            if (_worldsNavigation.IsComplete)
-            {
-                _isComplete = true;
-                PlayCinematicOutro();
-            }
+            PlayCinematicOutro();
+            _gameOverState.SetState(false);
         }
     }
 

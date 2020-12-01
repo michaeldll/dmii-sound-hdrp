@@ -12,19 +12,19 @@ public class Navigation : ScriptableObject
     public int next;
 
     private int _index = 0;
-    private bool _isComplete = false;
+    public bool _isGameOverAllowed = false;
 
     // Getter
-    public bool IsComplete
+    public bool IsGameOverAllowed
     {
-        get { return _isComplete; }
+        get { return _isGameOverAllowed; }
     }
 
     // Public
     public void SetOrder(int[] newOrder)
     {
         order = newOrder;
-        _isComplete = false;
+        _isGameOverAllowed = false;
     }
 
     public void InitNavigation()
@@ -39,9 +39,10 @@ public class Navigation : ScriptableObject
         next = order[mod(_index + 1, order.Length)];
         previous = order[mod(_index - 1, order.Length)];
 
-        if (_index >= order.Length - 1)
+        if (_index >= 1)
         {
-            // _isComplete = true;
+            Debug.Log("is allowed");
+            _isGameOverAllowed = true;
         }
     }
 
