@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     private void OnIntroCompleted()
     {
+        Debug.Log("intro complete");
         _worlds[_worldsNavigation.active].Enter();
         _readyState.SetState(true);
         _cinematicControllerIntro.Reset();
@@ -118,11 +119,12 @@ public class GameManager : MonoBehaviour
     // Hooks
     void Start()
     {   
+        _readyState.SetState(false);
+        
         // Play intro with Audio Input Selection
         _introUI.Play();
 
         // When Intro finished (IntroUI.cs - line 32) Play Cinematic
-        // PlayCinematicIntro();
         onInterfaceComplete.e.AddListener(PlayCinematicIntro);
     }
 
