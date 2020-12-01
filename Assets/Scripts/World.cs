@@ -20,6 +20,12 @@ public class World : MonoBehaviour
     [SerializeField]
     private PlayerMovement _player = null;
 
+    [SerializeField]
+    public Color fogColor = Color.black;
+
+    [SerializeField]
+    public float fogDensity = 0.02f;
+
     private PathCreator _path;
     private int _id;
     private bool _isActive;
