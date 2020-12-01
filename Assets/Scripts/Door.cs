@@ -5,6 +5,17 @@ using DG.Tweening;
 
 public class Door : MonoBehaviour
 {
+    enum Animations
+    {
+        ScaleX,
+        ScaleY,
+        MoveUp,
+        Fade
+    };
+
+    [SerializeField]
+    private Animations _animation = Animations.ScaleX;
+
     [SerializeField]
     private Navigation _worldsNavigation = null;
 
@@ -40,7 +51,7 @@ public class Door : MonoBehaviour
 
         Transform portal = transform.Find("Portal");
         Vector3 scale = new Vector3(1, 1, 1);
-        portal.DOScale(scale, 1f);
+        portal.DOScale(scale, 2f).SetEase(Ease.InOutSine);
     }
 
     public void TransitionOut()
@@ -50,7 +61,7 @@ public class Door : MonoBehaviour
 
         Transform portal = transform.Find("Portal");
         Vector3 scale = new Vector3(0, 1, 1);
-        portal.DOScale(scale, 1f);
+        portal.DOScale(scale, 2f);
     }
 
     // Private

@@ -24,7 +24,7 @@ public class CinematicControllerIntro : MonoBehaviour
 
     public void End()
     {
-        _introCinematicDirector.initialTime = duration - 1d;
+        _introCinematicDirector.initialTime = duration;
         _introCinematicDirector.Play();
     }
 
