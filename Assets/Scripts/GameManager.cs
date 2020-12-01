@@ -162,13 +162,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        CheckVolume(); 
+        // CheckVolume(); 
 
-        if (_gameOverState.GetState)
-        {
-            PlayCinematicOutro();
-            _gameOverState.SetState(false);
-        }
+        // if (_gameOverState.GetState)
+        // {
+        //     PlayCinematicOutro();
+        //     _gameOverState.SetState(false);
+        // }
     }
 
     // Utils

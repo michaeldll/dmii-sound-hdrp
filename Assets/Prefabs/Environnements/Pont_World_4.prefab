@@ -62,22 +62,25 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: 47.647568, y: 0, z: -56.80005}
-      - {x: 47.647568, y: 0, z: -55.45459}
-      - {x: 42.577267, y: 0, z: -54.67285}
+      - {x: 47.45, y: 0, z: -56.139893}
+      - {x: 44.446114, y: 0, z: -55.0979}
+      - {x: 42.57072, y: 0, z: -54.69287}
       - {x: 42.297398, y: 0, z: -54.590332}
-      - {x: 36.705, y: 0, z: -52.94141}
-      - {x: -3.3402238, y: 0, z: -38.28076}
-      - {x: -16.193611, y: 0, z: -3.1118164}
-      - {x: -20.72458, y: 0, z: 9.285649}
+      - {x: 40.000786, y: 0, z: -53.72876}
+      - {x: 24.464935, y: 0, z: -47.541756}
+      - {x: 15.905697, y: 0, z: -41.106445}
+      - {x: 2.7010617, y: 0, z: -31.178467}
+      - {x: -8.441263, y: 0, z: -22.97754}
+      - {x: -17.185083, y: 0, z: -3.0720215}
+      - {x: -22.493599, y: 0, z: 9.012943}
       - {x: -19.434881, y: 0, z: 21.929688}
       - {x: -13.263647, y: 0, z: 35.41211}
       - {x: -9.890387, y: 0, z: 42.781742}
-      - {x: -4.599393, y: 0, z: 52.1709}
-      - {x: -2.3267922, y: 0, z: 57.690186}
-      - {x: 0.9285588, y: 0, z: 65.5962}
-      - {x: -0.1332387, y: 0, z: 73.54297}
-      - {x: -0.039072394, y: 0, z: 73.59009}
+      - {x: -4.2643523, y: 0, z: 52.19043}
+      - {x: -2.5958781, y: 0, z: 57.921387}
+      - {x: -0.270648, y: 0, z: 65.9082}
+      - {x: -0.0823544, y: 0, z: 71.217285}
+      - {x: -0.09, y: 0, z: 73.59009}
       isClosed: 0
       space: 2
       controlMode: 0
@@ -87,6 +90,7 @@ MonoBehaviour:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 2, y: 0.14433756, z: 0}
       perAnchorNormalsAngle:
+      - 0
       - 0
       - 0
       - 0
@@ -214,7 +218,7 @@ MonoBehaviour:
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _virtualPlayer: {fileID: 0}
   _player: {fileID: 0}
-  fogColor: {r: 0, g: 0, b: 0, a: 1}
+  fogColor: {r: 1, g: 0.8989018, b: 0.8537736, a: 1}
   fogDensity: 0.02
 --- !u!1 &1427711218641272011
 GameObject:
@@ -1764,7 +1768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.641
+      value: 47.45
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1772,23 +1776,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -57.3
+      value: -56.14
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.60789484
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7940176
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_RootOrder
@@ -1800,7 +1804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -74.875
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

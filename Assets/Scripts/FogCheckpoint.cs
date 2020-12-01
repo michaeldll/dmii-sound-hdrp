@@ -25,6 +25,7 @@ public class FogCheckpoint : MonoBehaviour
 
     void TweenFog(int id, Color color, float density)
     {
+        RenderSettings.fog = true;
         string destinationWorldName = "World_" + id.ToString();
         GameObject _destinationWorldGameObject = GameObject.Find(destinationWorldName);
         World _destinationWorld = _destinationWorldGameObject.GetComponent<World>();

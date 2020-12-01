@@ -238,6 +238,8 @@ MonoBehaviour:
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _virtualPlayer: {fileID: 0}
   _player: {fileID: 0}
+  fogColor: {r: 0, g: 0, b: 0, a: 1}
+  fogDensity: 0.02
 --- !u!1 &2485789636955798090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1064,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7148218940747971705, guid: 3445a280814422a42a29fcf6a7bec578, type: 3}
+      propertyPath: nav
+      value: 
+      objectReference: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
     - target: {fileID: 8820819329335001134, guid: 3445a280814422a42a29fcf6a7bec578, type: 3}
       propertyPath: m_Name
       value: Fog Trigger
