@@ -2301,6 +2301,8 @@ MonoBehaviour:
   _shuffleOrder: 1
   _playerMovement: {fileID: 7270311193076804833}
   onInterfaceComplete: {fileID: 11400000, guid: dad627086d0a3784f9f971d5baaaa40b, type: 2}
+  gameStartOnAwake: 1
+  data: {fileID: 0}
 --- !u!4 &1491229154
 Transform:
   m_ObjectHideFlags: 0
@@ -3425,15 +3427,15 @@ PrefabInstance:
       objectReference: {fileID: 1245319}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.12956588
+      value: 0.12956591
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.9946426e-17
+      value: -0.000000029551117
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.6221369e-17
+      value: 0.0000000038613654
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
@@ -3889,4 +3891,4 @@ MonoBehaviour:
   _gravity: -4.81
   _rotationLerpValue: 0.5
   data: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
-  gameStartOnAwake: 1
+  state: {fileID: 11400000, guid: 903c4072357144f598bc366e0da8d2f1, type: 2}

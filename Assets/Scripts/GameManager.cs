@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private VoidEvent onInterfaceComplete;
 
+    [SerializeField]
+    private bool gameStartOnAwake = true;
+
+    [SerializeField]
+    private DataObject data = null;
+
     private delegate void TimeoutCallback();
 
     private bool _isComplete = false;
@@ -117,10 +123,13 @@ public class GameManager : MonoBehaviour
     }
 
     // Hooks
+    void Awake()
+    {
+        _readyState.SetState(gameStartOnAwake);
+        data.SetVolume(0f);
+    }
     void Start()
     {   
-        _readyState.SetState(false);
-        
         // Play intro with Audio Input Selection
         _introUI.Play();
 

@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private DataObject data = null;
 
     [SerializeField]
-    private bool gameStartOnAwake = true;
+    private State state = null;
 
     private PlayerSettings _settings;
 
@@ -228,8 +228,6 @@ public class PlayerMovement : MonoBehaviour
         _groundCheck = transform.Find("Ground Check");
         _rotation = transform.rotation;
         _rotationTarget = transform.rotation;
-        data.SetVolume(0f);
-        data.SetGameStarted(gameStartOnAwake);
     }
 
     void Update()
@@ -237,18 +235,20 @@ public class PlayerMovement : MonoBehaviour
         // Useful to be able to edit settings on play mode
         SetupSettings();
 
-        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundLayer);
+        if(state.GetState){
+            _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundLayer);
 
-        if (_isGrounded && _velocity.y < 0)
-        {
-            _velocity.y = -2f;
+            if (_isGrounded && _velocity.y < 0)
+            {
+                _velocity.y = -2f;
+            }
+
+            HandleMove();
+
+            // Gravity
+            _velocity.y += _gravity * Time.deltaTime;
+            _controller.Move(_velocity * Time.deltaTime);
         }
-
-        HandleMove();
-
-        // Gravity
-        _velocity.y += _gravity * Time.deltaTime;
-        _controller.Move(_velocity * Time.deltaTime);
 
         _time += 1f * Time.deltaTime;
     }
