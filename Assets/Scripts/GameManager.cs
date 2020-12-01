@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     private State _readyState = null;
 
     [SerializeField]
+    private IntroUI _introUI;
+
+    [SerializeField]
     private CinematicControllerIntro _cinematicControllerIntro;
 
     [SerializeField]
@@ -25,6 +28,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private PlayerMovement _playerMovement = null;
+
+    [SerializeField]
+    private VoidEvent onInterfaceComplete;
+
+    [SerializeField]
+    private bool gameStartOnAwake = true;
+
+    [SerializeField]
+    private DataObject data = null;
 
     private delegate void TimeoutCallback();
 
@@ -89,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     private void OnIntroCompleted()
     {
+        Debug.Log("intro complete");
         _worlds[_worldsNavigation.active].Enter();
         _readyState.SetState(true);
         _cinematicControllerIntro.Reset();
@@ -110,10 +123,18 @@ public class GameManager : MonoBehaviour
     }
 
     // Hooks
-    void Start()
+    void Awake()
     {
-        InitNavigation();
-        PlayCinematicIntro();
+        _readyState.SetState(gameStartOnAwake);
+        data.SetVolume(0f);
+    }
+    void Start()
+    {   
+        // Play intro with Audio Input Selection
+        _introUI.Play();
+
+        // When Intro finished (IntroUI.cs - line 32) Play Cinematic
+        onInterfaceComplete.e.AddListener(PlayCinematicIntro);
     }
 
     void Update()

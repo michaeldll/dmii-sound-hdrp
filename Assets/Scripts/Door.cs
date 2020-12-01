@@ -31,6 +31,7 @@ public class Door : MonoBehaviour
         _destinationWorldGameObject = GameObject.Find(destinationWorldName);
         _destinationWorld = _destinationWorldGameObject.GetComponent<World>();
         _destinationDoorTransform = direction == -1 ? _destinationWorld.doorLeave.transform : _destinationWorld.doorEnter.transform;
+        Debug.Log(_destinationDoorTransform);
     }
 
     public void TransitionIn()
@@ -78,6 +79,9 @@ public class Door : MonoBehaviour
     private void TeleportPlayer()
     {
         Vector3 playerOffsetFromDoor = _player.position - transform.position;
+
+        Debug.Log(_destinationDoorTransform);
+
         Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
 
         Quaternion offsetRotation = Quaternion.FromToRotation(transform.forward, -_destinationDoorTransform.forward);
