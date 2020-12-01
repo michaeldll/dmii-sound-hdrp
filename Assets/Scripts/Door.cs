@@ -24,6 +24,7 @@ public class Door : MonoBehaviour
     private string _type = null;
 
     private Transform _player = null;
+    private Transform _virtualPlayer = null;
     private CharacterController _playerCharacterController;
 
     private World _world;
@@ -101,12 +102,11 @@ public class Door : MonoBehaviour
 
     private void TeleportPlayer()
     {
-        Vector3 playerOffsetFromDoor = _player.position - transform.position;
+        // Vector3 playerOffsetFromDoor = _player.position - transform.position;
+        // Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
 
-        Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
-
-        Quaternion offsetRotation = Quaternion.FromToRotation(transform.forward, -_destinationDoorTransform.forward);
-        Quaternion targetRotation = _player.rotation * offsetRotation;
+        Vector3 targetPosition = _virtualPlayer.position;
+        Quaternion targetRotation = _virtualPlayer.rotation;
 
         // Handler Character controller issue
         _playerCharacterController.enabled = false;
@@ -137,6 +137,7 @@ public class Door : MonoBehaviour
         _world = GetComponentInParent<World>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerCharacterController = _player.GetComponentInChildren<CharacterController>();
+        _virtualPlayer = GameObject.FindGameObjectWithTag("Virtual Player").transform;
         _timeline = GetComponent<PlayableDirector>();
 
         if (_type == "")

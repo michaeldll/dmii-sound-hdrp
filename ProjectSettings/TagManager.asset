@@ -7,6 +7,8 @@ TagManager:
   - NoFollowCamera
   - FollowCamera
   - VirtualPlayer
+  - Portal Camera
+  - Virtual Player
   layers:
   - Default
   - TransparentFX

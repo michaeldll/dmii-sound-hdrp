@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class VirtualPlayer : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class VirtualPlayer : MonoBehaviour
     private State _readyState = null;
 
     private Transform _player = null;
+    private Camera _playerCamera = null;
     private Transform _playerHead;
     private Camera _camera;
 
@@ -64,6 +66,29 @@ public class VirtualPlayer : MonoBehaviour
         newMaterial.mainTexture = _camera.targetTexture;
     }
 
+    // private void RenderCamera(ScriptableRenderContext context, Camera camera)
+    private void Update()
+    {
+        if (!_readyState.GetState) return;
+
+        Transform inTransform = _doorActive.transform;
+        Transform outTransform = _doorDestination.transform;
+
+        _camera.projectionMatrix = _playerCamera.projectionMatrix;
+
+        Vector3 relativePosition = inTransform.InverseTransformPoint(_player.transform.position);
+        relativePosition = Vector3.Scale(relativePosition, new Vector3(-1, 1, -1));
+        transform.position = outTransform.TransformPoint(relativePosition);
+
+        Vector3 relativeRotation = inTransform.InverseTransformDirection(_player.transform.forward);
+        relativeRotation = Vector3.Scale(relativeRotation, new Vector3(-1, 1, -1));
+        transform.forward = outTransform.TransformDirection(relativeRotation);
+
+        _head.localPosition = _playerHead.localPosition;
+
+        _renderTextureMaterial.mainTexture = _camera.targetTexture;
+    }
+
     // Hooks
     void Awake()
     {
@@ -72,80 +97,11 @@ public class VirtualPlayer : MonoBehaviour
 
         _head = transform.Find("Head");
         _camera = _head.GetComponentInChildren<Camera>();
+        _playerCamera = _player.GetComponentInChildren<Camera>();
     }
 
     void Start()
     {
         CreateRenderTexture();
-    }
-
-    void Update()
-    {
-        if (!_readyState.GetState) return;
-
-        Vector3 playerOffsetFromDoor = _player.position - _doorActive.transform.position;
-
-        // Get Real distance from Player to Door --> Magnitude
-        float playerDistanceFromDoor = playerOffsetFromDoor.magnitude;
-        // Get direction from Player to Door --> Normalized vector
-        Vector3 playerToDoorDirection = playerOffsetFromDoor.normalized;
-
-        // Door Active direction
-        Vector3 DoorActiveDirection = _doorActive.transform.forward;
-        // Door Destination direction
-        Vector3 DoorDestinationDirection = _doorDestination.transform.forward;
-
-        // Get Offset du to doors respective rotations
-        Vector3 offsetBetweenDoors = -DoorDestinationDirection * playerDistanceFromDoor - DoorActiveDirection * playerDistanceFromDoor;
-
-        Vector3 position = _doorDestination.transform.position + playerOffsetFromDoor + offsetBetweenDoors;
-
-        Quaternion offsetRotation = Quaternion.FromToRotation(_doorActive.transform.forward, -_doorDestination.transform.forward);
-        Quaternion rotation = _player.rotation * offsetRotation;
-
-        // Apply Positions / Rotations
-        transform.position = position;
-        transform.rotation = rotation;
-        _head.localPosition = _playerHead.localPosition;
-
-        // Todo: See why we have to set the texture each frame 
-        _renderTextureMaterial.mainTexture = _camera.targetTexture;
-
-        // If Rotation DoorActive  0, 0, 0 --> This works
-        // transform.rotation = _player.rotation * _doorDestination.transform.rotation;
-    }
-
-    void OnDrawGizmos() {
-        if (!_doorActive || !_doorDestination) return;
-
-        Vector3 playerOffsetFromDoor = _player.position - _doorActive.transform.position;
-
-        // Get Real distance from Player to Door --> Magnitude
-        float playerDistanceFromDoor = playerOffsetFromDoor.magnitude;
-        // Get direction from Player to Door --> Normalized vector
-        Vector3 playerToDoorDirection = playerOffsetFromDoor.normalized;
-
-        // Door Active direction
-        Vector3 DoorActiveDirection = _doorActive.transform.forward;
-        // Door Destination direction
-        Vector3 DoorDestinationDirection = _doorDestination.transform.forward;
-
-        // Get Offset du to doors respective rotations
-        Vector3 offsetBetweenDoors = -DoorDestinationDirection * playerDistanceFromDoor - DoorActiveDirection * playerDistanceFromDoor;
-
-        Vector3 position = _doorDestination.transform.position + playerOffsetFromDoor + offsetBetweenDoors;
-
-        // Draw Guizmos Player
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(DoorActiveDirection * playerDistanceFromDoor, 3);
-
-        // Draw Guizmos Relative Virtual Player
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(-DoorDestinationDirection * playerDistanceFromDoor, 3);
-
-        // Draw Guizmos Virtual Player
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(position, 3);
-        Gizmos.DrawLine(position, position + (_player.forward + _doorActive.transform.forward +_doorDestination.transform.forward) * 5f);
     }
 }
