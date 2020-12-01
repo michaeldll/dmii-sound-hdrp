@@ -22,13 +22,14 @@ public class ReactiveFloat : MonoBehaviour
     }
 
     Vector3 _initialPos;
-    float _value;
+    float _randFloat1;
+    float _randFloat2;
 
     void Float()
     {
         float volumeFloatAmplitude;
-        if (data) volumeFloatAmplitude = floatAmplitude * data.micVolumeNormalized + 0.1f;
-        else volumeFloatAmplitude = 0.25f;
+        if (data) volumeFloatAmplitude = floatAmplitude * data.micVolumeNormalized + _randFloat1;
+        else volumeFloatAmplitude = _randFloat2;
 
         switch (type)
         {
@@ -62,6 +63,8 @@ public class ReactiveFloat : MonoBehaviour
 
     void Start()
     {
+        _randFloat1 = Random.Range(0f, 0.1f);
+        _randFloat2 = Random.Range(0f, 0.2f);
         _initialPos = transform.localPosition;
     }
 
