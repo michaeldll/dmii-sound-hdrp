@@ -22,10 +22,16 @@ public class CinematicControllerIntro : MonoBehaviour
         // Maybe do stuff
     }
 
+    public void End()
+    {
+        _introCinematicDirector.initialTime = duration - 1d;
+        _introCinematicDirector.Play();
+    }
+
     // Hooks
     void Awake()
     {
         _introCinematicDirector = GetComponentInChildren<PlayableDirector>();
-        duration = _introCinematicDirector ? _introCinematicDirector.duration: 0d;
+        duration = _introCinematicDirector ? _introCinematicDirector.duration : 0d;
     }
 }

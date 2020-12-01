@@ -24,12 +24,16 @@ public class Navigation : ScriptableObject
     public void SetOrder(int[] newOrder)
     {
         order = newOrder;
+    }
+
+    public void Reset()
+    {
+        _index = 0;
         _isGameOverAllowed = false;
     }
 
     public void InitNavigation()
     {
-        _index = 0;
         SetNavigation();
     }
 
@@ -41,7 +45,6 @@ public class Navigation : ScriptableObject
 
         if (_index >= 1)
         {
-            Debug.Log("is allowed");
             _isGameOverAllowed = true;
         }
     }
@@ -59,7 +62,8 @@ public class Navigation : ScriptableObject
     }
 
     //Private
-    public int mod(int n, int m) {
+    public int mod(int n, int m)
+    {
         return ((n % m) + m) % m;
     }
 }

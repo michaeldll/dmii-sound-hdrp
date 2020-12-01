@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private bool _isDebug = false;
+
     [SerializeField]
     private Navigation _worldsNavigation = null;
 
@@ -42,14 +46,13 @@ public class GameManager : MonoBehaviour
     private DataObject data = null;
 
     private delegate void TimeoutCallback();
-    private bool _isComplete = false;
-    private List<float> _volumes = new List<float>();
-    Coroutine _co;
-
 
     // Private
     private void InitNavigation()
     {
+        _worldsNavigation.Reset();
+        _readyState.SetState(false);
+
         SetNavigationOrder();
 
         if (_shuffleOrder)
@@ -58,8 +61,20 @@ public class GameManager : MonoBehaviour
         }
 
         _worldsNavigation.InitNavigation();
-        _readyState.SetState(false);
         _playerMovement.InitPosition(_worlds[_worldsNavigation.active].transform.position);
+    }
+
+    private void SetNavigationOrder()
+    {
+        List<World> worlds = new List<World>(_worlds);
+        List<int> order = new List<int>();
+
+        for (int i = 0; i < worlds.Count; i++)
+        {
+            order.Add(i);
+        }
+
+        _worldsNavigation.SetOrder(order.ToArray());
     }
 
     private void ShuffleNavigationOrder()
@@ -82,34 +97,15 @@ public class GameManager : MonoBehaviour
         _worldsNavigation.SetOrder(newOrder.ToArray());
     }
 
-    private void SetNavigationOrder()
-    {
-        List<World> worlds = new List<World>(_worlds);
-        List<int> order = new List<int>();
-
-        for (int i = 0; i < worlds.Count; i++)
-        {
-            order.Add(i);
-        }
-
-        _worldsNavigation.SetOrder(order.ToArray());
-    }
-
     // Intro
     private void PlayCinematicIntro()
     {
+        if (_isDebug) return;
+
         _cinematicControllerIntro.PlayCinematic();
         float duration = (float)_cinematicControllerIntro.duration;
-        TimeoutCallback onCompleteCallback = OnIntroCompleted;
-        StartCoroutine(SetTimeout(duration, OnIntroCompleted));
-    }
-
-    private void OnIntroCompleted()
-    {
-        Debug.Log("intro complete");
-        _worlds[_worldsNavigation.active].Enter();
-        _readyState.SetState(true);
-        _cinematicControllerIntro.Reset();
+        TimeoutCallback onCompleteCallback = IntroCompletedHandler;
+        StartCoroutine(SetTimeout(duration, IntroCompletedHandler));
     }
 
     // Outro
@@ -117,58 +113,85 @@ public class GameManager : MonoBehaviour
     {
         _cinematicControllerOutro.PlayCinematic();
         float duration = (float)_cinematicControllerOutro.duration;
-        TimeoutCallback onCompleteCallback = OnOutroCompleted;
-        StartCoroutine(SetTimeout(duration, OnOutroCompleted));
+        TimeoutCallback onCompleteCallback = OutroCompletedHandler;
+        StartCoroutine(SetTimeout(duration, OutroCompletedHandler));
     }
 
-    private void OnOutroCompleted()
+    private void CheckVolume()
     {
-        InitNavigation(); //respawn player 
-        //TODO: checker l'ouverture des portes
+        if (_isDebug)
+        {
+            TimeoutCallback onStopPlayingCallback = onStopPlayingHandler;
+            StartCoroutine(Debounced(2f, onStopPlayingCallback));
+        }
+        // Trigger GameOver when user stopped playing music
+        else if (data.micVolumeNormalized > 0.1f)
+        {
+            TimeoutCallback onStopPlayingCallback = onStopPlayingHandler;
+            StartCoroutine(Debounced(2f, onStopPlayingCallback));
+        }
+    }
+
+    private void SpeedUpIntro()
+    {
+        VideoPlayer videoPlayer = _introUI.GetComponentInChildren<VideoPlayer>();
+        videoPlayer.playbackSpeed = 10;
+
+        _cinematicControllerIntro.End();
+        IntroCompletedHandler();
+    }
+
+    // Handlers
+    private void IntroUICompletedHandler()
+    {
+        PlayCinematicIntro();
+    }
+
+    private void IntroCompletedHandler()
+    {
+        _worlds[_worldsNavigation.active].Enter();
+        _readyState.SetState(true);
+        _cinematicControllerIntro.Reset();
+    }
+
+    private void OutroCompletedHandler()
+    {
+        InitNavigation();
         _cinematicControllerOutro.Reset();
     }
 
-    private IEnumerator VolumeTimeout(){
-        return SetTimeout(2f, () => {
-            if (_worldsNavigation.IsGameOverAllowed) {
-                _gameOverState.SetState(true);
-                Debug.Log("Game Over");
-            };
-        });
-    }
-
-    private void CheckVolume(){
-        if (data.micVolumeNormalized > 0.1f) {
-            StopCoroutine("VolumeTimeout");
-            _co = StartCoroutine("VolumeTimeout");
-        }
+    private void onStopPlayingHandler()
+    {
+        _gameOverState.SetState(true);
+        PlayCinematicOutro();
     }
 
     // Hooks
     void Awake()
     {
-        _co = StartCoroutine("VolumeTimeout");
         _readyState.SetState(gameStartOnAwake);
         data.SetVolume(0f);
     }
+
     void Start()
-    {   
+    {
+        InitNavigation();
+
         // Play intro with Audio Input Selection
         _introUI.Play();
 
-        // When Intro finished (IntroUI.cs - line 32) Play Cinematic
-        onInterfaceComplete.e.AddListener(PlayCinematicIntro);
+        // When Intro finished Play Cinematic
+        onInterfaceComplete.e.AddListener(IntroUICompletedHandler);
+
+        if (_isDebug)
+        {
+            SpeedUpIntro();
+        }
     }
 
     void Update()
     {
-        CheckVolume(); 
-
-        if (_gameOverState.GetState)
-        {
-            PlayCinematicOutro();
-            _gameOverState.SetState(false);
-        }
+        if (_worldsNavigation.IsGameOverAllowed) CheckVolume();
     }
 
     // Utils
@@ -177,5 +200,23 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         Method();
+    }
+
+    private Guid _latest;
+
+    IEnumerator Debounced(float time, TimeoutCallback Method)
+    {
+        // generate a new id and set it as the latest one 
+        Guid guid = Guid.NewGuid();
+        _latest = guid;
+
+        // set the denounce duration here
+        yield return new WaitForSeconds(time);
+
+        // check if this call is still the latest one
+        if (_latest == guid)
+        {
+            Method();
+        }
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787b9578c9a846e41b264ff55b4588d2, type: 3}
   m_Name: Worlds Navigation
   m_EditorClassIdentifier: 
-  order: 00000000020000000100000003000000
-  active: 0
-  previous: 3
-  next: 2
-  _isGameOverAllowed: 0
+  order: 00000000030000000100000002000000
+  active: 3
+  previous: 0
+  next: 1
+  _isGameOverAllowed: 1

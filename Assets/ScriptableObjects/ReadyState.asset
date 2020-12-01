@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc9e0d484d9f44a8ae6edd522aeee60, type: 3}
   m_Name: ReadyState
   m_EditorClassIdentifier: 
-  state: 
+  state: 1
