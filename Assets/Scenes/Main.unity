@@ -3427,15 +3427,15 @@ PrefabInstance:
       objectReference: {fileID: 1245319}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.12956588
+      value: 0.12956591
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.9946426e-17
+      value: -0.000000029551117
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.6221369e-17
+      value: 0.0000000038613654
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
@@ -3883,7 +3883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc63d97aa403dd347a438acd0177c520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementMode: 0
+  _movementMode: 2
   _settingsManager: {fileID: 11400000, guid: de30e98ebc4ff47328c0593f123b950d, type: 2}
   _groundLayer:
     serializedVersion: 2
