@@ -159,8 +159,11 @@ public class PlayerMovement : MonoBehaviour
     {
         float z = Input.GetAxis("Vertical");
 
+        float pathLength = _pathCreator.path.length;
+        float relativeSpeed = _speed / pathLength;
+
         // Update progress from 0 to almost 1
-        _progress += z * _speed * Time.deltaTime;
+        _progress += z * relativeSpeed * Time.deltaTime;
         _progress = Mathf.Clamp(_progress, 0f, 0.999f);
 
         // Use x and z position from path but preserve y
