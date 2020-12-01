@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Playables;
 
 public class Door : MonoBehaviour
 {
-    enum Animations
-    {
-        ScaleX,
-        ScaleY,
-        MoveUp,
-        Fade
-    };
+    // enum Animations
+    // {
+    //     ScaleX,
+    //     ScaleY,
+    //     MoveUp,
+    //     Fade
+    // };
 
-    [SerializeField]
-    private Animations _animation = Animations.ScaleX;
+    // [SerializeField]
+    // private Animations _animation = Animations.ScaleX;
 
     [SerializeField]
     private Navigation _worldsNavigation = null;
@@ -35,6 +36,8 @@ public class Door : MonoBehaviour
 
     private bool _isPlayerOverlapping = false;
 
+    private PlayableDirector _timeline;
+
     // Public
     public void SetDestination(int id, int direction)
     {
@@ -50,8 +53,15 @@ public class Door : MonoBehaviour
         _isVisible = true;
 
         Transform portal = transform.Find("Portal");
-        Vector3 scale = new Vector3(1, 1, 1);
-        portal.DOScale(scale, 2f).SetEase(Ease.InOutSine);
+
+        if (_timeline)
+        {
+            _timeline.Play();
+        }
+        else
+        {
+            portal.DOScale(new Vector3(1, 1, 1), 2f).SetEase(Ease.InOutSine);
+        }
     }
 
     public void TransitionOut()
@@ -68,8 +78,11 @@ public class Door : MonoBehaviour
     private void InitAppearance()
     {
         Transform portal = transform.Find("Portal");
-        Vector3 scale = new Vector3(0, 1, 1);
-        portal.localScale = scale;
+
+        if (!_timeline)
+        {
+            portal.localScale = new Vector3(0, 1, 1);
+        }
     }
 
     private void CheckTrigger()
@@ -124,6 +137,7 @@ public class Door : MonoBehaviour
         _world = GetComponentInParent<World>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerCharacterController = _player.GetComponentInChildren<CharacterController>();
+        _timeline = GetComponent<PlayableDirector>();
 
         if (_type == "")
         {

@@ -944,6 +944,30 @@ MonoBehaviour:
   floatAmplitude: 0.2
   floatFrequency: 0.5
   type: 1
+--- !u!1 &497945868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4759910282237235446, guid: d0c324182816a6c419db76038b398595, type: 3}
+  m_PrefabInstance: {fileID: 1275984672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &497945870
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497945868}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &514717620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2952840297994580763, guid: 9b23ce561bf702649aeb752cf48874db, type: 3}
@@ -1645,6 +1669,30 @@ MonoBehaviour:
   floatAmplitude: 0.2
   floatFrequency: 0.5
   type: 1
+--- !u!1 &1110090549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5113717487007570894, guid: d0c324182816a6c419db76038b398595, type: 3}
+  m_PrefabInstance: {fileID: 1275984672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!320 &1110090553
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110090549}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 04f124f37e3d84307bf54c5d47986811, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -1121001799656417996, guid: 04f124f37e3d84307bf54c5d47986811, type: 2}
+    value: {fileID: 497945870}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1124497409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7403006427488913441, guid: 9b23ce561bf702649aeb752cf48874db, type: 3}
@@ -1999,6 +2047,14 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7270311193076804833}
+    - target: {fileID: 2825897609563277801, guid: d0c324182816a6c419db76038b398595, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113717487007570889, guid: d0c324182816a6c419db76038b398595, type: 3}
+      propertyPath: _animation
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5505033895818360718, guid: d0c324182816a6c419db76038b398595, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].x
       value: -0.007209271
@@ -2288,7 +2344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d25fa018f178d498aaa1a8e0d69297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDebug: 1
+  _isDebug: 0
   _isDebugGameover: 0
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _readyState: {fileID: 11400000, guid: 903c4072357144f598bc366e0da8d2f1, type: 2}
