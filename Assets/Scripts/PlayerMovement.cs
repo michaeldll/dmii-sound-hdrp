@@ -61,7 +61,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 position = startPosition;
         position.y = 1.08f;
+
+        _controller.enabled = false;
         transform.position = position;
+        _controller.transform.position = position;
+        _controller.enabled = true;
     }
 
     public void SetActivePath(PathCreator path)
@@ -80,16 +84,16 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (_movementMode)
         {
-            case Modes.FreeMoveWithControls :
+            case Modes.FreeMoveWithControls:
                 FreeMoveWithControls();
                 break;
-            case Modes.FreeMoveWithSound :
+            case Modes.FreeMoveWithSound:
                 FreeMoveWithSound();
                 break;
-            case Modes.MoveAlongPathWithControls :
+            case Modes.MoveAlongPathWithControls:
                 MoveAlongPathWithControls();
                 break;
-            case Modes.MoveAlongPathWithSound :
+            case Modes.MoveAlongPathWithSound:
                 MoveAlongPathWithSound();
                 break;
         }
@@ -99,16 +103,16 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (_movementMode)
         {
-            case Modes.FreeMoveWithControls :
+            case Modes.FreeMoveWithControls:
                 _settings = _settingsManager.freeMoveWithControls;
                 break;
-            case Modes.FreeMoveWithSound :
+            case Modes.FreeMoveWithSound:
                 _settings = _settingsManager.freeMoveWithSound;
                 break;
-            case Modes.MoveAlongPathWithControls :
+            case Modes.MoveAlongPathWithControls:
                 _settings = _settingsManager.moveAlongPathWithControls;
                 break;
-            case Modes.MoveAlongPathWithSound :
+            case Modes.MoveAlongPathWithSound:
                 _settings = _settingsManager.moveAlongPathWithSound;
                 break;
         }
@@ -235,7 +239,8 @@ public class PlayerMovement : MonoBehaviour
         // Useful to be able to edit settings on play mode
         SetupSettings();
 
-        if(state.GetState){
+        if (state.GetState)
+        {
             _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundLayer);
 
             if (_isGrounded && _velocity.y < 0)

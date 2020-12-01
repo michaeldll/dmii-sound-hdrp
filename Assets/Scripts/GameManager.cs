@@ -157,6 +157,8 @@ public class GameManager : MonoBehaviour
     private void OutroCompletedHandler()
     {
         InitNavigation();
+        _worlds[_worldsNavigation.active].Enter();
+        _readyState.SetState(true);
         _cinematicControllerOutro.Reset();
     }
 
