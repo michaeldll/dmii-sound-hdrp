@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 1, g: 1, b: 1, a: 1}
+  m_FogColor: {r: 0.3764706, g: 0.27450982, b: 0.3137255, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0
+  m_FogDensity: 0.02
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 1, g: 0.995283, b: 0.995283, a: 1}
@@ -2809,6 +2809,26 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7270311193076804833}
+    - target: {fileID: 8939306657316766070, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.2168803
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939306657316766070, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939306657316766070, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.444028
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939306657316766070, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939306657316766070, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15.730514
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
 --- !u!1 &1230244882 stripped
@@ -6012,7 +6032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc63d97aa403dd347a438acd0177c520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementMode: 2
+  _movementMode: 0
   _settingsManager: {fileID: 11400000, guid: de30e98ebc4ff47328c0593f123b950d, type: 2}
   _groundLayer:
     serializedVersion: 2
