@@ -605,6 +605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2825897609563277801}
+  - component: {fileID: 497945870}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -620,13 +621,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4759910282237235446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7144695771285860554}
   m_Father: {fileID: 5113717487007570895}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &497945870
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759910282237235446}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5113717487007570894
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +658,7 @@ GameObject:
   - component: {fileID: 5113717487007570895}
   - component: {fileID: 5113717487007570888}
   - component: {fileID: 5113717487007570889}
+  - component: {fileID: 1110090553}
   m_Layer: 0
   m_Name: Door Leave
   m_TagString: Untagged
@@ -687,6 +708,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _type: leave
+--- !u!320 &1110090553
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113717487007570894}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 04f124f37e3d84307bf54c5d47986811, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -1121001799656417996, guid: 04f124f37e3d84307bf54c5d47986811, type: 2}
+    value: {fileID: 497945870}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &5273520824175503931
 GameObject:
   m_ObjectHideFlags: 0
