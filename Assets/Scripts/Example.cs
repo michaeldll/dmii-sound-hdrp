@@ -9,8 +9,13 @@ public class Example : MonoBehaviour
         Debug.Log(f);
     }
 
+    public void Log2(float f){
+        Debug.Log(f);
+    }
+
     void Start(){
         floatEvent.e.AddListener(Log); // add callback (with the same argument types as referenced event)
+        floatEvent.e.AddListener(Log2); // add callback (with the same argument types as referenced event)
     }
 
     void Update(){
