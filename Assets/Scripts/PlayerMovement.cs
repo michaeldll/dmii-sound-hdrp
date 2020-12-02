@@ -31,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     private float _rotationLerpValue = 0.01f;
 
     [SerializeField]
+    private float _positionLerpValue = 0.01f;
+
+    [SerializeField]
     private DataObject data = null;
 
     [SerializeField]
@@ -55,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
     private float _progress = 0f;
     private Quaternion _rotation;
     private Quaternion _rotationTarget;
+    private Vector3 _position;
+    private Vector3 _positionTarget;
 
     // Public
     public void InitPosition(Vector3 startPosition)
@@ -167,16 +172,14 @@ public class PlayerMovement : MonoBehaviour
         _progress = Mathf.Clamp(_progress, 0f, 0.999f);
 
         // Use x and z position from path but preserve y
-        Vector3 position = transform.position;
-        position.x = _pathCreator.path.GetPointAtTime(_progress).x;
-        position.z = _pathCreator.path.GetPointAtTime(_progress).z;
+        _positionTarget = transform.position;
+        _positionTarget.x = _pathCreator.path.GetPointAtTime(_progress).x;
+        _positionTarget.z = _pathCreator.path.GetPointAtTime(_progress).z;
+        // _position = Vector3.Lerp(_position, _positionTarget, _positionLerpValue);
+        _position = _positionTarget;
 
-        _rotationTarget = transform.rotation;
-        _rotationTarget.y = _pathCreator.path.GetRotation(_progress).y;
-
-        _rotation.x = _rotationTarget.x;
-        _rotation.z = _rotationTarget.z;
-        _rotation.y = Lerp(_rotation.y, _rotationTarget.y, _rotationLerpValue);
+        _rotationTarget = Quaternion.LookRotation(_pathCreator.path.GetDirection(_progress));
+        _rotation = Quaternion.Lerp(_rotation, _rotationTarget, _rotationLerpValue);
 
         // Head Bob
         float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * z;
@@ -184,14 +187,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply direct position and rotation to player controller
         _controller.enabled = false;
-        _controller.transform.position = position;
+        _controller.transform.position = _position;
         _controller.transform.rotation = _rotation;
         _controller.enabled = true;
-    }
-
-    private float Lerp(float start, float end, float value)
-    {
-        return (1f - value) * start + value * end;
     }
 
     private void MoveAlongPathWithSound()
@@ -204,16 +202,14 @@ public class PlayerMovement : MonoBehaviour
         _progress = Mathf.Clamp(_progress, 0f, 0.999f);
 
         // Use x and z position from path but preserve y
-        Vector3 position = transform.position;
-        position.x = _pathCreator.path.GetPointAtTime(_progress).x;
-        position.z = _pathCreator.path.GetPointAtTime(_progress).z;
+        _positionTarget = transform.position;
+        _positionTarget.x = _pathCreator.path.GetPointAtTime(_progress).x;
+        _positionTarget.z = _pathCreator.path.GetPointAtTime(_progress).z;
+        // _position = Vector3.Lerp(_position, _positionTarget, _positionLerpValue);
+        _position = _positionTarget;
 
-        _rotationTarget = transform.rotation;
-        _rotationTarget.y = _pathCreator.path.GetRotation(_progress).y;
-
-        _rotation.x = _rotationTarget.x;
-        _rotation.z = _rotationTarget.z;
-        _rotation.y = Lerp(_rotation.y, _rotationTarget.y, _rotationLerpValue);
+        _rotationTarget = Quaternion.LookRotation(_pathCreator.path.GetDirection(_progress));
+        _rotation = Quaternion.Lerp(_rotation, _rotationTarget, _rotationLerpValue);
 
         // Head Bob
         float offsetY = Mathf.Sin(_time * _headBobSpeed) * _headBobAmplitude * _acceleration.z;
@@ -221,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply direct position and rotation to player controller
         _controller.enabled = false;
-        _controller.transform.position = position;
+        _controller.transform.position = _position;
         _controller.transform.rotation = _rotation;
         _controller.enabled = true;
     }

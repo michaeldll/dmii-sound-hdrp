@@ -13,9 +13,20 @@ public class CustomPathFollower : MonoBehaviour
     [SerializeField]
     private float _speed;
 
-    private float progress = 0f;
+    public float progress = 0f;
 
     void Update()
+    {
+        progress += _speed * Time.deltaTime;
+
+        Vector3 position = _pathCreator.path.GetPointAtTime(progress);
+        Quaternion rotation = _pathCreator.path.GetRotation(progress);
+
+        transform.position = position;
+        transform.rotation = rotation;
+    }
+
+    void OnDrawGizmos()
     {
         progress += _speed * Time.deltaTime;
 
