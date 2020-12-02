@@ -244,7 +244,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 1
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 95354de07da15a84eae07500d55edca1, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 0aa76e71375f14dcc889c5897c1fcc66, type: 2}
 --- !u!1 &1427711217216646577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,7 +1515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 307322362391724617, guid: 2091c7bf536bc8a4ab660311039efa4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.752
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 307322362391724617, guid: 2091c7bf536bc8a4ab660311039efa4c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1548,6 +1548,14 @@ PrefabInstance:
     - target: {fileID: 307322362391724617, guid: 2091c7bf536bc8a4ab660311039efa4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307322362391724617, guid: 2091c7bf536bc8a4ab660311039efa4c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.5747
+      objectReference: {fileID: 0}
+    - target: {fileID: 307322362391724617, guid: 2091c7bf536bc8a4ab660311039efa4c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.6136
       objectReference: {fileID: 0}
     - target: {fileID: 7790934410065695155, guid: 2091c7bf536bc8a4ab660311039efa4c, type: 3}
       propertyPath: m_Enabled

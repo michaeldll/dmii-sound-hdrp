@@ -182,7 +182,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 1
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 95354de07da15a84eae07500d55edca1, type: 2}
+  sharedProfile: {fileID: 11400000, guid: fe9f1ffe2976f4d50a46c23bb81a6fd5, type: 2}
 --- !u!114 &6700399573615553350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,6 +783,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fiole VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
+      value: 9.271816
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 8.99587
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 8.99587
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
 --- !u!4 &1278520877133827630 stripped
@@ -852,6 +864,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 271b88f6b2a4b374e8c4c9d268f4c967, type: 3}
       propertyPath: m_LocalScale.z
       value: 13.59293
+      objectReference: {fileID: 0}
+    - target: {fileID: -8539431895176007875, guid: 271b88f6b2a4b374e8c4c9d268f4c967, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4081
+      objectReference: {fileID: 0}
+    - target: {fileID: -8539431895176007875, guid: 271b88f6b2a4b374e8c4c9d268f4c967, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4081
+      objectReference: {fileID: 0}
+    - target: {fileID: -8539431895176007875, guid: 271b88f6b2a4b374e8c4c9d268f4c967, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.4081
       objectReference: {fileID: 0}
     - target: {fileID: -7005902229356982358, guid: 271b88f6b2a4b374e8c4c9d268f4c967, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1147,6 +1171,18 @@ PrefabInstance:
     - target: {fileID: 6989593370597649221, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
       propertyPath: m_Name
       value: Fiole VFX (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
+      value: 9.271816
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 8.99587
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 8.99587
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
@@ -1640,6 +1676,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fiole VFX (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
+      value: 9.271816
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 8.99587
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 8.99587
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
 --- !u!4 &3592574024783369729 stripped
@@ -2112,6 +2160,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fiole VFX (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
+      value: 9.271816
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 8.99587
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 8.99587
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
 --- !u!4 &6881032611660320106 stripped
@@ -2279,6 +2339,18 @@ PrefabInstance:
     - target: {fileID: 6989593370597649221, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
       propertyPath: m_Name
       value: Fiole VFX (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
+      value: 10.541177
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 10.227451
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348572776419765669, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 10.227451
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f66877724fac94eac9cf6523aed9d7, type: 3}
