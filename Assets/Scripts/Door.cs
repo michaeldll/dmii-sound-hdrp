@@ -17,6 +17,9 @@ public class Door : MonoBehaviour
     // [SerializeField]
     // private Animations _animation = Animations.ScaleX;
 
+    [HideInInspector]
+    public Transform transformOverride;
+
     [SerializeField]
     private Navigation _worldsNavigation = null;
 
@@ -45,7 +48,7 @@ public class Door : MonoBehaviour
         string destinationWorldName = "World_" + id.ToString();
         _destinationWorldGameObject = GameObject.Find(destinationWorldName);
         _destinationWorld = _destinationWorldGameObject.GetComponent<World>();
-        _destinationDoorTransform = direction == -1 ? _destinationWorld.doorLeave.transform : _destinationWorld.doorEnter.transform;
+        _destinationDoorTransform = direction == -1 ? _destinationWorld.doorLeave.transformOverride : _destinationWorld.doorEnter.transformOverride;
     }
 
     public void TransitionIn()
@@ -102,7 +105,7 @@ public class Door : MonoBehaviour
 
     private void TeleportPlayer()
     {
-        Vector3 playerOffsetFromDoor = _player.position - transform.position;
+        Vector3 playerOffsetFromDoor = _player.position - transformOverride.position;
         Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
 
         // Vector3 targetPosition = _virtualPlayer.position;
@@ -137,8 +140,9 @@ public class Door : MonoBehaviour
         _world = GetComponentInParent<World>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerCharacterController = _player.GetComponentInChildren<CharacterController>();
-        _virtualPlayer = GameObject.FindGameObjectWithTag("VirtualPlayer").transform;
+        _virtualPlayer = GameObject.FindGameObjectWithTag("Virtual Player").transform;
         _timeline = GetComponent<PlayableDirector>();
+        transformOverride = transform.Find("Transform GO");
 
         if (_type == "")
         {
