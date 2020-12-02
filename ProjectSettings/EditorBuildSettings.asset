@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/feature#fog.unity
     guid: 743eebfc7a1e14cf8a28aaac3aed3b2b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: f148f82b55b954ecb868443047df468d
+  - enabled: 1
+    path: Assets/Scenes/demo.unity
+    guid: 8eccac593c80a4b18ab888b670ea1d47
   m_configObjects: {}
