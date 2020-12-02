@@ -43,7 +43,7 @@ public class World : MonoBehaviour
         _player.SetActivePath(_path);
         _player.ResetProgress();
 
-        doorEnter.TransitionIn();
+        // doorEnter.TransitionIn();
         OnDoorTransitionIn.e.AddListener(doorLeave.TransitionIn);
     }
 
