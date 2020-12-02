@@ -71,8 +71,8 @@ public class VirtualPlayer : MonoBehaviour
     {
         if (!_readyState.GetState) return;
 
-        Transform inTransform = _doorActive.transform;
-        Transform outTransform = _doorDestination.transform;
+        Transform inTransform = _doorActive.transformOverride;
+        Transform outTransform = _doorDestination.transformOverride;
 
         _camera.projectionMatrix = _playerCamera.projectionMatrix;
 
