@@ -185,5 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6de7a4d9184044e84c667b93ee1712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transformOverride: {fileID: 0}
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _type: enter
+  OnDoorTransitionIn: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}

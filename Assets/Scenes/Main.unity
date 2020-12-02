@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1983578043254180841, guid: e631e8d77b86f4f168cbebd1c983cec3, type: 3}
       propertyPath: m_TagString
-      value: VirtualPlayer
+      value: Virtual Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e631e8d77b86f4f168cbebd1c983cec3, type: 3}
@@ -620,6 +620,14 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7270311193076804833}
+    - target: {fileID: 5113717487007570889, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
+      propertyPath: OnDoorTransitionIn
+      value: 
+      objectReference: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
+    - target: {fileID: 6669728301307599224, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
+      propertyPath: OnDoorTransitionIn
+      value: 
+      objectReference: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6fa385e853607a48a5e58911b5f26ce, type: 3}
 --- !u!1001 &1244309533
@@ -742,6 +750,14 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7270311193076804833}
+    - target: {fileID: 5113717487007570889, guid: d0c324182816a6c419db76038b398595, type: 3}
+      propertyPath: OnDoorTransitionIn
+      value: 
+      objectReference: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
+    - target: {fileID: 5723039171077442713, guid: d0c324182816a6c419db76038b398595, type: 3}
+      propertyPath: _type
+      value: leave
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c324182816a6c419db76038b398595, type: 3}
 --- !u!1 &1491229152
@@ -917,6 +933,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5113717487007570889, guid: 32c4891fd1bf78747ac0f56850758f4f, type: 3}
+      propertyPath: OnDoorTransitionIn
+      value: 
+      objectReference: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
     - target: {fileID: 5862239437975470331, guid: 32c4891fd1bf78747ac0f56850758f4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -925,6 +945,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6669728301307599224, guid: 32c4891fd1bf78747ac0f56850758f4f, type: 3}
+      propertyPath: OnDoorTransitionIn
+      value: 
+      objectReference: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
     - target: {fileID: 6902132730780382282, guid: 32c4891fd1bf78747ac0f56850758f4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1049,6 +1073,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 442879547062630321, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
+      propertyPath: m_PlaybackSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 442879549048142132, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
+      propertyPath: _stopAtInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442879549048142132, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
+      propertyPath: onInterfaceComplete
+      value: 
+      objectReference: {fileID: 11400000, guid: dad627086d0a3784f9f971d5baaaa40b, type: 2}
+    - target: {fileID: 442879549048142138, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
+      propertyPath: m_Name
+      value: Cinematic Controller Intro
+      objectReference: {fileID: 0}
     - target: {fileID: 2049299793976289065, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1103,31 +1143,15 @@ PrefabInstance:
       objectReference: {fileID: 1245319}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.12956588
+      value: 0.12956591
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.9946426e-17
+      value: -0.000000029551117
       objectReference: {fileID: 0}
     - target: {fileID: 2049299794926215487, guid: b8f53c12590db46f2a799ded51233a96, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.6221369e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 442879547062630321, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
-      propertyPath: m_PlaybackSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 442879549048142132, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
-      propertyPath: _stopAtInteraction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 442879549048142132, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
-      propertyPath: onInterfaceComplete
-      value: 
-      objectReference: {fileID: 11400000, guid: dad627086d0a3784f9f971d5baaaa40b, type: 2}
-    - target: {fileID: 442879549048142138, guid: c8c801f54420f426ba5dc41410a3d6dc, type: 3}
-      propertyPath: m_Name
-      value: Cinematic Controller Intro
+      value: 0.0000000038613654
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f53c12590db46f2a799ded51233a96, type: 3}

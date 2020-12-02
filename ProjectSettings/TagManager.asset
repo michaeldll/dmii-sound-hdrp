@@ -6,7 +6,6 @@ TagManager:
   tags:
   - NoFollowCamera
   - FollowCamera
-  - VirtualPlayer
   - Portal Camera
   - Virtual Player
   layers:

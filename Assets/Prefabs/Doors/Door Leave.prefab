@@ -188,3 +188,4 @@ MonoBehaviour:
   transformOverride: {fileID: 0}
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _type: enter
+  OnDoorTransitionIn: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
