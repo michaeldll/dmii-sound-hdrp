@@ -23,6 +23,9 @@ public class Door : MonoBehaviour
     [SerializeField]
     private string _type = null;
 
+    [SerializeField]
+    private VoidEvent OnDoorTransitionIn = null;
+
     private Transform _player = null;
     private Transform _virtualPlayer = null;
     private CharacterController _playerCharacterController;

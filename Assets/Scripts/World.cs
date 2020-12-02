@@ -20,6 +20,15 @@ public class World : MonoBehaviour
     [SerializeField]
     private PlayerMovement _player = null;
 
+    [SerializeField]
+    public Color fogColor = Color.black;
+
+    [SerializeField]
+    public VoidEvent OnDoorTransitionIn = null;
+
+    [SerializeField]
+    public float fogDensity = 0.02f;
+
     private PathCreator _path;
     private int _id;
     private bool _isActive;
@@ -35,8 +44,7 @@ public class World : MonoBehaviour
         _player.ResetProgress();
 
         doorEnter.TransitionIn();
-        TimeoutCallback transitionIn = doorLeave.TransitionIn;
-        StartCoroutine(SetTimeout(2f, transitionIn));
+        OnDoorTransitionIn.e.AddListener(doorLeave.TransitionIn);
     }
 
     public void Leave()

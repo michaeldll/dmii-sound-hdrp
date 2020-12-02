@@ -166,36 +166,99 @@ public class MicInput : MonoBehaviour
     // void OnDisable()
     // {
     //     StopMicrophone();
+
+    //     _recordedClip = clip;
+
+    //     float levelMax = 0;
+    //     float[] waveData = new float[_recordedClip.samples];
+
+    //     _recordedClip.GetData(waveData, 0);
+    //     // Getting a peak on the last 128 samples
+    //     for (int i = 0; i < _recordedClip.samples; i++)
+    //     {
+    //         float wavePeak = waveData[i] * waveData[i];
+    //         if (levelMax < wavePeak)
+    //         {
+    //             levelMax = wavePeak;
+    //         }
+    //     }
+    //     return levelMax;
     // }
 
-
-    // void OnDestroy()
+    // public float DecibelsOfClip(AudioClip clip)
     // {
     //     StopMicrophone();
+
+    //     _recordedClip = clip;
+
+    //     float levelMax = 0;
+    //     float[] waveData = new float[_recordedClip.samples];
+
+    //     _recordedClip.GetData(waveData, 0);
+    //     // Getting a peak on the last 128 samples
+    //     for (int i = 0; i < _recordedClip.samples; i++)
+    //     {
+    //         float wavePeak = waveData[i] * waveData[i];
+    //         if (levelMax < wavePeak)
+    //         {
+    //             levelMax = wavePeak;
+    //         }
+    //     }
+
+    //     float db = 20 * Mathf.Log10(Mathf.Abs(levelMax));
+
+    //     return db;
     // }
 
 
 
+    // void Update()
+    // {
+    //     // levelMax equals to the highest normalized value power 2, a small number because < 1
+    //     // pass the value to a static var so we can access it from anywhere
+    //     _micLoudness = MicrophoneLevelMax();
+    //     micLoudnessinDecibels = MicrophoneLevelMaxDecibels();
+    //     if (micLoudnessinDecibels > minimumLimitDb)
+    //     {
+    //         micNormalized = Mathf.Clamp((1 / Mathf.Abs(micLoudnessinDecibels) * amplitude), 0, 1);
+    //         data.SetVolume(micNormalized);
+    //     }
+    //     else
+    //     {
+    //         data.SetVolume(0f);
+    //     }
+    // }
 
-    // make sure the mic gets started & stopped when application gets focused
-    void OnApplicationFocus(bool focus)
-    {
-        if (focus)
-        {
-            //Debug.Log("Focus");
 
-            if (!_isInitialized)
-            {
-                //Debug.Log("Init Mic");
-                InitMic();
-            }
-        }
-        if (!focus)
-        {
-            //Debug.Log("Pause");
-            // StopMicrophone();
-            //Debug.Log("Stop Mic");
 
-        }
-    }
+    // // start mic when scene starts
+    // void OnEnable()
+    // {
+    //     InitMic();
+    //     _isInitialized = true;
+    // }
+
+
+
+    // // make sure the mic gets started & stopped when application gets focused
+    // void OnApplicationFocus(bool focus)
+    // {
+    //     if (focus)
+    //     {
+    //         //Debug.Log("Focus");
+
+    //         if (!_isInitialized)
+    //         {
+    //             //Debug.Log("Init Mic");
+    //             InitMic();
+    //         }
+    //     }
+    //     if (!focus)
+    //     {
+    //         //Debug.Log("Pause");
+    //         // StopMicrophone();
+    //         //Debug.Log("Stop Mic");
+
+    // }
+    // }
 }
