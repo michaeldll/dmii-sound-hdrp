@@ -905,7 +905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7494377124636712809
 Transform:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f065232c1c028264ea35d0457ded69fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transpose: 0
+  transpose: -6
   audioSources:
   - {fileID: 7494377124936358743}
   - {fileID: 7494377123941661097}
@@ -959,7 +959,7 @@ MonoBehaviour:
   - q
   - w
   data: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
-  acceleration: 0.001
+  acceleration: 0.01
   _accelerationFactor: 0
   schema: 1
 --- !u!1 &7494377124739133146

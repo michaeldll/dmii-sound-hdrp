@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d25fa018f178d498aaa1a8e0d69297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDebug: 1
+  _isDebug: 0
   _isDebugGameover: 0
   _worldsNavigation: {fileID: 11400000, guid: 073b7670f58b51b4a885814dd1b4312c, type: 2}
   _readyState: {fileID: 11400000, guid: 903c4072357144f598bc366e0da8d2f1, type: 2}
@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _shuffleOrder: 1
+  _shuffleOrder: 0
   _playerMovement: {fileID: 0}
   onInterfaceComplete: {fileID: 11400000, guid: dad627086d0a3784f9f971d5baaaa40b, type: 2}
   gameStartOnAwake: 0

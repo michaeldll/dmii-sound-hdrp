@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5646123067312918745
 Transform:
   m_ObjectHideFlags: 0
@@ -143,5 +143,8 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: b515e7b3601df704c9cd777c23fa1627, type: 2}
   micLoudnessinDecibels: 0
   allDevices: []
-  device: 
-  micLoudness: 0
+  micNormalized: 0
+  micNormalizedAccel: 0
+  micDecceleration: 0.1
+  amplitude: 10
+  minimumLimitDb: -40

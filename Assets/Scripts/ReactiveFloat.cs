@@ -14,6 +14,9 @@ public class ReactiveFloat : MonoBehaviour
     float floatFrequency = 0.5f;
 
     [SerializeField]
+    float maxModulo = 0.05f;
+
+    [SerializeField]
     FloatingType type = FloatingType.PerlinNoise;
     public enum FloatingType
     {
@@ -22,19 +25,22 @@ public class ReactiveFloat : MonoBehaviour
     }
 
     Vector3 _initialPos;
-    float _randFloat1;
-    float _randFloat2;
+    float volumeFloatAmplitude;
+    float volumeFloatFrequency;
+    private float _modulo = 0f;
+
 
     void Float()
     {
-        float volumeFloatAmplitude;
-        if (data) volumeFloatAmplitude = floatAmplitude * data.micVolumeNormalized + _randFloat1;
-        else volumeFloatAmplitude = _randFloat2;
+        if (data) {
+            volumeFloatAmplitude = floatAmplitude * data.micVolumeNormalized + _modulo.Map(0, 1f, 0, maxModulo);
+            volumeFloatFrequency = floatFrequency * data.micVolumeNormalized + _modulo.Map(0, 1f, 0, maxModulo);
+        }
 
         switch (type)
         {
             case FloatingType.Sinus:
-                float sin = Mathf.Sin(Time.frameCount * floatFrequency) * volumeFloatAmplitude;
+                float sin = Mathf.Sin(Time.frameCount * volumeFloatFrequency) * volumeFloatAmplitude;
 
                 // lerp values with easing function
                 Vector3 vec = transform.localPosition;
@@ -63,13 +69,18 @@ public class ReactiveFloat : MonoBehaviour
 
     void Start()
     {
-        _randFloat1 = Random.Range(0f, 0.1f);
-        _randFloat2 = Random.Range(0f, 0.2f);
         _initialPos = transform.localPosition;
+        _modulo = mod(transform.localPosition.z, 1f);
     }
 
     void Update()
     {
         Float();
+    }
+
+    //Private
+    private float mod(float n, float m)
+    {
+        return ((n % m) + m) % m;
     }
 }

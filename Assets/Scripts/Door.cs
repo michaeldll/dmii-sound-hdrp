@@ -56,6 +56,7 @@ public class Door : MonoBehaviour
 
     public void TransitionIn()
     {
+        Debug.Log(_isVisible);
         if (_isVisible) return;
         _isVisible = true;
 
@@ -77,8 +78,18 @@ public class Door : MonoBehaviour
         _isVisible = false;
 
         Transform portal = transform.Find("Portal");
-        Vector3 scale = new Vector3(0, 1, 1);
-        portal.DOScale(scale, 2f);
+
+        if (!_timeline)
+        {
+            Vector3 scale = new Vector3(0, 1, 1);
+            portal.DOScale(scale, 2f);
+        }
+        else
+        {
+            Vector3 pos = portal.localPosition;
+            pos.y = -11f;
+            portal.localPosition = pos;
+        }
     }
 
     // Private

@@ -51,6 +51,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private DataObject data = null;
 
+    [SerializeField]
+    private float endGameSilenceDuration = 6f;
+
+    [SerializeField]
+    public VoidEvent OnDoorTransitionIn = null;
+
+    [SerializeField]
+    public Door beginningDoor = null;
+
     private delegate void TimeoutCallback();
 
     // Private
@@ -133,13 +142,13 @@ public class GameManager : MonoBehaviour
         if (_isDebug)
         {
             TimeoutCallback onStopPlayingCallback = onStopPlayingHandler;
-            StartCoroutine(Debounced(2f, onStopPlayingCallback));
+            StartCoroutine(Debounced(endGameSilenceDuration, onStopPlayingCallback));
         }
         // Trigger GameOver when user stopped playing music
         else if (data.micVolumeNormalized > 0.1f)
         {
             TimeoutCallback onStopPlayingCallback = onStopPlayingHandler;
-            StartCoroutine(Debounced(2f, onStopPlayingCallback));
+            StartCoroutine(Debounced(endGameSilenceDuration, onStopPlayingCallback));
         }
     }
 
@@ -171,6 +180,7 @@ public class GameManager : MonoBehaviour
         _worlds[_worldsNavigation.active].Enter();
         _readyState.SetState(true);
         _cinematicControllerOutro.Reset();
+        OnDoorTransitionIn.e.AddListener(beginningDoor.TransitionIn);
     }
 
     private void onStopPlayingHandler()
