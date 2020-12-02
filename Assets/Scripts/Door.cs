@@ -137,7 +137,7 @@ public class Door : MonoBehaviour
         _world = GetComponentInParent<World>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerCharacterController = _player.GetComponentInChildren<CharacterController>();
-        _virtualPlayer = GameObject.FindGameObjectWithTag("Virtual Player").transform;
+        _virtualPlayer = GameObject.FindGameObjectWithTag("VirtualPlayer").transform;
         _timeline = GetComponent<PlayableDirector>();
 
         if (_type == "")

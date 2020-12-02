@@ -38,5 +38,7 @@
 	<string>9A235</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Maxon Computer GmbH. All rights reserved.</string>
+		<key>NSMicrophoneUsageDescription</key>
+	<string>Please allow microphone to play</string>
 </dict>
 </plist>

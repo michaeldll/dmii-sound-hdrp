@@ -47,6 +47,8 @@
 	<key>NSPrincipalClass</key>
 	<string>MyNsApplication</string>
 	<key>QuartzGLEnable</key>
+		<key>NSMicrophoneUsageDescription</key>
+	<string>Please allow microphone to play</string>
 	<true/>
 </dict>
 </plist>

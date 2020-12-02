@@ -22,8 +22,9 @@ public class MicInput : MonoBehaviour
     public DataObject data;
     public float micLoudnessinDecibels;
     public List<string> allDevices;
-    public string device;
     public float micNormalized;
+    public float micNormalizedAccel;
+    public float micDecceleration = 0.1f;
     public float amplitude = 10f;
     public float minimumLimitDb = -40f;
 
@@ -32,6 +33,7 @@ public class MicInput : MonoBehaviour
     private int _sampleWindow = 128;
     private float _micLoudness;
     private bool _isInitialized;
+    private string _device;
 
     //mic initialization
     public void InitMic()
@@ -41,17 +43,17 @@ public class MicInput : MonoBehaviour
             allDevices.Add(micDevice);
         }
 
-        if (device == null)
+        if (_device == null)
         {
-            device = Microphone.devices[0];
+            _device = Microphone.devices[0];
         }
-        _clipRecord = Microphone.Start(device, true, 999, 44100);
+        _clipRecord = Microphone.Start(_device, true, 999, 44100);
         _isInitialized = true;
     }
 
     public void StopMicrophone()
     {
-        Microphone.End(device);
+        Microphone.End(_device);
         _isInitialized = false;
     }
 
@@ -141,13 +143,14 @@ public class MicInput : MonoBehaviour
         micLoudnessinDecibels = MicrophoneLevelMaxDecibels();
         if (micLoudnessinDecibels > minimumLimitDb)
         {
-            micNormalized = Mathf.Clamp((1 / Mathf.Abs(micLoudnessinDecibels) * amplitude), 0, 1);
-            data.SetVolume(micNormalized);
+            float normalized = Mathf.Clamp((1 / Mathf.Abs(micLoudnessinDecibels) * amplitude), 0, 1);
+            micNormalizedAccel = normalized;
         }
-        else
-        {
-            data.SetVolume(0f);
-        }
+
+        if (micNormalizedAccel > 0) micNormalizedAccel = Mathf.Clamp(micNormalizedAccel - micDecceleration, -1, 1);
+
+        micNormalized = Mathf.Clamp(micNormalizedAccel + micNormalized, 0, 1);
+        data.SetVolume(micNormalized);
     }
 
 
@@ -164,14 +167,14 @@ public class MicInput : MonoBehaviour
     // {
     //     StopMicrophone();
     // }
- 
+
 
     // void OnDestroy()
     // {
     //     StopMicrophone();
     // }
- 
- 
+
+
 
 
     // make sure the mic gets started & stopped when application gets focused
