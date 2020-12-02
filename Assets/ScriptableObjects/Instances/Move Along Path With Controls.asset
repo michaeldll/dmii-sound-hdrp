@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43faae8abab34c3faf79c6fd880b089, type: 3}
   m_Name: Move Along Path With Controls
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 0.5
   rotationSpeed: 0
   headBobAmplitude: 0.1
   headBobSpeed: 12

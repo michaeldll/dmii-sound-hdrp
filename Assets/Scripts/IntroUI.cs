@@ -6,13 +6,18 @@ using UnityEngine.Playables;
 public class IntroUI : MonoBehaviour
 {
     private VideoPlayerUI _videoPlayerUI;
-    private PlayableDirector _timeline;
+
+    [SerializeField]
+    private Animator _animator;
 
     [SerializeField]
     private double _interactionTime;
 
     [SerializeField]
     private bool _stopAtInteraction = true;
+
+    [SerializeField]
+    private GameObject _buttonPanel;
 
     private bool _isInputSelected = false;
     private bool _isComplete = false;
@@ -28,7 +33,12 @@ public class IntroUI : MonoBehaviour
 
     public void TransitionOut()
     {
-        _timeline.Play();
+        _animator.SetBool("isPlaying", true);
+    }
+
+    public void SetInputSelected(bool toggle)
+    {
+        _isInputSelected = toggle;
     }
 
     // Private
@@ -41,7 +51,7 @@ public class IntroUI : MonoBehaviour
     void Awake()
     {
         _videoPlayerUI = GetComponentInChildren<VideoPlayerUI>();
-        _timeline = GetComponentInChildren<PlayableDirector>();
+
         onInterfaceComplete.e.AddListener(OnCompleteHandler);
     }
 
@@ -50,11 +60,14 @@ public class IntroUI : MonoBehaviour
         if (_stopAtInteraction && _videoPlayerUI.isPlaying && !_isInputSelected && _videoPlayerUI.currentTime >= _interactionTime)
         {
             _videoPlayerUI.Pause();
+            _buttonPanel.SetActive(true);
+            _stopAtInteraction = false;
         }
 
         if (_videoPlayerUI.isPaused && _isInputSelected)
         {
             _videoPlayerUI.Play();
+            _isInputSelected = false;
         }
 
         if (!_isComplete && _videoPlayerUI.isComplete)
