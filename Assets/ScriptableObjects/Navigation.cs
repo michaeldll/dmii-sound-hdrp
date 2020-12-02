@@ -36,6 +36,13 @@ public class Navigation : ScriptableObject
         previous = order[mod(index - 1, order.Length)];
     }
 
+    public void SetInitialNavigation()
+    {
+        active = 0;
+        next = order[mod(index + 1, order.Length)];
+        previous = order[mod(index - 1, order.Length)];
+    }
+
     public void Next()
     {
         index++;
