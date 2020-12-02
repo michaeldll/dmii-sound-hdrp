@@ -105,10 +105,10 @@ public class Door : MonoBehaviour
 
     private void TeleportPlayer()
     {
-        // Vector3 playerOffsetFromDoor = _player.position - transform.position;
-        // Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
+        Vector3 playerOffsetFromDoor = _player.position - transform.position;
+        Vector3 targetPosition = _destinationDoorTransform.position + playerOffsetFromDoor;
 
-        Vector3 targetPosition = _virtualPlayer.position;
+        // Vector3 targetPosition = _virtualPlayer.position;
         Quaternion targetRotation = _virtualPlayer.rotation;
 
         // Handler Character controller issue

@@ -5424,6 +5424,14 @@ PrefabInstance:
       propertyPath: m_Animations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7190116170974628333, guid: 4adb3dfa71eae4bec8ab972fb3fb1a28, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190116170974628333, guid: 4adb3dfa71eae4bec8ab972fb3fb1a28, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 4adb3dfa71eae4bec8ab972fb3fb1a28, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.4611359
@@ -5735,9 +5743,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7580350231581087891, guid: c92810740e0a54bcea84e3e6edc35985, type: 3}
   m_PrefabInstance: {fileID: 6870086448667000534}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5053439240261367597 stripped
+--- !u!1 &7097602325420934488 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1834688048370616827, guid: c92810740e0a54bcea84e3e6edc35985, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4406997137564826510, guid: c92810740e0a54bcea84e3e6edc35985, type: 3}
   m_PrefabInstance: {fileID: 6870086448667000534}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6403496641612486973 stripped
