@@ -99,7 +99,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -2384,6 +2384,10 @@ PrefabInstance:
       propertyPath: _type
       value: leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3085054372613593032, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
+      propertyPath: OnDoorTransitionIn
+      value: 
+      objectReference: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.09
@@ -2625,6 +2629,14 @@ PrefabInstance:
     - target: {fileID: 3085054372613593032, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: _type
       value: enter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085054372613593032, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
+      propertyPath: OnDoorTransitionIn
+      value: 
+      objectReference: {fileID: 11400000, guid: 94a2fae5fcf8fae4d94ed1f651e8c72b, type: 2}
+    - target: {fileID: 3085054372613593033, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3085054372613593038, guid: 005983defd3154b97b20b9bfb3375dc3, type: 3}
       propertyPath: m_LocalPosition.x
